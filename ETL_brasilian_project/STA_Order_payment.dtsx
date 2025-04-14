@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="4/13/2025 4:43:19 PM"
+  DTS:CreationDate="4/13/2025 5:57:46 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="NCEL209601"
   DTS:CreatorName="AMAIISDOM\mdakroub"
-  DTS:DTSID="{3B656BB8-011F-44E9-9793-ED96BC519A17}"
+  DTS:DTSID="{F672FBB2-E795-4CB9-8D1B-D80BD4AED2A0}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="STA_Order_payment"
   DTS:PackageType="5"
   DTS:VersionBuild="12"
-  DTS:VersionGUID="{12933987-D99A-4C0C-ACAB-D401D32A1835}">
+  DTS:VersionGUID="{6D5309E1-A9D8-48C4-86C1-F8AA489DEAD9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Orders_connection_manager]"
+      DTS:refId="Package.ConnectionManagers[Order_Payment_connection_manager]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{6D6A9DC4-ADBB-4119-BD13-292AFCD4F961}"
-      DTS:ObjectName="Orders_connection_manager">
+      DTS:DTSID="{12DD8B3B-1A28-43C4-8BC3-2A2115EB4DEB}"
+      DTS:ObjectName="Order_Payment_connection_manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -30,7 +30,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x0022_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="C:\Users\mdakroub\Documents\Laptop\DSTI\classes\data_warehouse\project\datasets\brasil_store\orders.csv">
+          DTS:ConnectionString="C:\Users\mdakroub\Documents\Laptop\DSTI\classes\data_warehouse\project\datasets\brasil_store\order_payments.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="order_id"
-              DTS:DTSID="{94BE3381-4898-4224-8031-87A6BFE78989}"
+              DTS:DTSID="{A18F5849-FB32-4CCD-8C0A-3D0338E31AE3}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -47,8 +47,8 @@
               DTS:MaximumWidth="255"
               DTS:DataType="129"
               DTS:TextQualified="True"
-              DTS:ObjectName="customer_id"
-              DTS:DTSID="{3978EEF5-64FA-45C6-8E1C-550CC31446CB}"
+              DTS:ObjectName="payment_sequential"
+              DTS:DTSID="{CFFF171C-22CB-47FE-8812-AF2CE4D886A9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -56,8 +56,8 @@
               DTS:MaximumWidth="255"
               DTS:DataType="129"
               DTS:TextQualified="True"
-              DTS:ObjectName="order_status"
-              DTS:DTSID="{E4C72DCA-5DD4-454D-A470-5F62A0E6B6FF}"
+              DTS:ObjectName="payment_type"
+              DTS:DTSID="{BE417F33-F1B9-47BA-87D0-5F4B904DB7D4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -65,35 +65,8 @@
               DTS:MaximumWidth="255"
               DTS:DataType="129"
               DTS:TextQualified="True"
-              DTS:ObjectName="order_purchase_timestamp"
-              DTS:DTSID="{0B7FFDDD-892B-406C-A30A-E90DA6BDB477}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="255"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="order_approved_at"
-              DTS:DTSID="{4DA2D667-572D-4BBE-8A12-D8B7F710B5C5}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="255"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="order_delivered_carrier_date"
-              DTS:DTSID="{B93589E5-E93E-4B11-AC69-B7A0CA1939BA}"
-              DTS:CreationName="" />
-            <DTS:FlatFileColumn
-              DTS:ColumnType="Delimited"
-              DTS:ColumnDelimiter="_x002C_"
-              DTS:MaximumWidth="255"
-              DTS:DataType="129"
-              DTS:TextQualified="True"
-              DTS:ObjectName="order_delivered_customer_date"
-              DTS:DTSID="{6B7580F8-AE06-41DD-97A5-5DD34F58507C}"
+              DTS:ObjectName="payment_installments"
+              DTS:DTSID="{94F4995F-ADBE-4785-B9DA-4E9E3A44C3FB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -101,8 +74,8 @@
               DTS:MaximumWidth="255"
               DTS:DataType="129"
               DTS:TextQualified="True"
-              DTS:ObjectName="order_estimated_delivery_date"
-              DTS:DTSID="{CB8E03D5-DBA1-4F0D-9BFE-26CB398ED915}"
+              DTS:ObjectName="payment_value"
+              DTS:DTSID="{26F594CA-4C57-4B95-821D-6F8FCB074A0B}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -112,13 +85,13 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\DFT - STA Orders"
+      DTS:refId="Package\DFT - STA Order payment"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{1A82B311-3B26-4264-A666-C114CF6DBC2E}"
+      DTS:DTSID="{57F8DED1-53BB-49E8-9880-F5A2654930F7}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="DFT - STA Orders"
+      DTS:ObjectName="DFT - STA Order payment"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -126,12 +99,12 @@
           version="1">
           <components>
             <component
-              refId="Package\DFT - STA Orders\FF_SRC - Orders"
+              refId="Package\DFT - STA Order payment\FF_SRC - Order payment"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
               localeId="1033"
-              name="FF_SRC - Orders"
+              name="FF_SRC - Order payment"
               usesDispositions="true"
               version="1">
               <properties>
@@ -146,25 +119,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - STA Orders\FF_SRC - Orders.Connections[FlatFileConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Orders_connection_manager]"
-                  connectionManagerRefId="Package.ConnectionManagers[Orders_connection_manager]"
+                  refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Order_Payment_connection_manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Order_Payment_connection_manager]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output]"
+                  refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_id]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[order_id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[order_id]"
                       length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_id]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[order_id]"
                       name="order_id"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -179,15 +152,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[customer_id]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_sequential]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_sequential]"
                       length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[customer_id]"
-                      name="customer_id"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_sequential]"
+                      name="payment_sequential"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -201,15 +174,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_status]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_type]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_type]"
                       length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_status]"
-                      name="order_status"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_type]"
+                      name="payment_type"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -223,15 +196,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_installments]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_installments]"
                       length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]"
-                      name="order_purchase_timestamp"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_installments]"
+                      name="payment_installments"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -245,81 +218,15 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_approved_at]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_value]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_value]"
                       length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_approved_at]"
-                      name="order_approved_at"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
-                      length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]"
-                      name="order_delivered_carrier_date"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
-                      length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]"
-                      name="order_delivered_customer_date"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the data is in binary format."
-                          name="UseBinaryFormat">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
-                      length="255"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]"
-                      name="order_estimated_delivery_date"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_value]"
+                      name="payment_value"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
@@ -336,77 +243,59 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_id]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[order_id]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_sequential]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="customer_id" />
+                      name="payment_sequential" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_status]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_type]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_status" />
+                      name="payment_type" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_purchase_timestamp]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_installments]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_purchase_timestamp" />
+                      name="payment_installments" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_approved_at]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].ExternalColumns[payment_value]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_approved_at" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_carrier_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_delivered_carrier_date" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_delivered_customer_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_delivered_customer_date" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].ExternalColumns[order_estimated_delivery_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_estimated_delivery_date" />
+                      name="payment_value" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output]"
+                  refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1252"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -415,7 +304,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\DFT - STA Orders\OLE_DST - STA"
+              refId="Package\DFT - STA Order payment\OLE_DST - STA"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -430,7 +319,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[STA_Orders]</property>
+                  name="OpenRowset">[dbo].[STA_Order_payment]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -472,7 +361,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - STA Orders\OLE_DST - STA.Connections[OleDbConnection]"
+                  refId="Package\DFT - STA Order payment\OLE_DST - STA.Connections[OleDbConnection]"
                   connectionManagerID="{CF87CDF7-F30C-485E-B8E8-41407067DB3A}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.STA_brazilian_store]"
                   description="The OLE DB runtime connection used to access the database."
@@ -480,148 +369,106 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input]"
+                  refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
                       cachedName="order_id"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_id]" />
+                      externalMetadataColumnId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[order_id]" />
                     <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[payment_sequential]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
-                      cachedName="customer_id"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[customer_id]" />
+                      cachedName="payment_sequential"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_sequential]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_sequential]" />
                     <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_status]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[payment_type]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
-                      cachedName="order_status"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_status]" />
+                      cachedName="payment_type"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_type]" />
                     <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_purchase_timestamp]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[payment_installments]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
-                      cachedName="order_purchase_timestamp"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_purchase_timestamp]" />
+                      cachedName="payment_installments"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_installments]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_installments]" />
                     <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_approved_at]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[payment_value]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="255"
-                      cachedName="order_approved_at"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_approved_at]" />
-                    <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_delivered_carrier_date]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="255"
-                      cachedName="order_delivered_carrier_date"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_carrier_date]" />
-                    <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_delivered_customer_date]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="255"
-                      cachedName="order_delivered_customer_date"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_delivered_customer_date]" />
-                    <inputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].Columns[order_estimated_delivery_date]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="255"
-                      cachedName="order_estimated_delivery_date"
-                      externalMetadataColumnId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
-                      lineageId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output].Columns[order_estimated_delivery_date]" />
+                      cachedName="payment_value"
+                      externalMetadataColumnId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_value]"
+                      lineageId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output].Columns[payment_value]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
                       codePage="1252"
                       dataType="str"
                       length="255"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_sequential]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="customer_id" />
+                      name="payment_sequential" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_status" />
+                      name="payment_type" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_purchase_timestamp]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_installments]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_purchase_timestamp" />
+                      name="payment_installments" />
                     <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_approved_at]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[payment_value]"
                       codePage="1252"
                       dataType="str"
                       length="255"
-                      name="order_approved_at" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_carrier_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_delivered_carrier_date" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_delivered_customer_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_delivered_customer_date" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input].ExternalColumns[order_estimated_delivery_date]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="order_estimated_delivery_date" />
+                      name="payment_value" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - STA Orders\OLE_DST - STA.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DFT - STA Order payment\OLE_DST - STA.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - STA Orders\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - STA Order payment\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - STA Orders\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - STA Order payment\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - STA Orders\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - STA Order payment\OLE_DST - STA.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -632,29 +479,29 @@
           </components>
           <paths>
             <path
-              refId="Package\DFT - STA Orders.Paths[Flat File Source Output]"
-              endId="Package\DFT - STA Orders\OLE_DST - STA.Inputs[OLE DB Destination Input]"
+              refId="Package\DFT - STA Order payment.Paths[Flat File Source Output]"
+              endId="Package\DFT - STA Order payment\OLE_DST - STA.Inputs[OLE DB Destination Input]"
               name="Flat File Source Output"
-              startId="Package\DFT - STA Orders\FF_SRC - Orders.Outputs[Flat File Source Output]" />
+              startId="Package\DFT - STA Order payment\FF_SRC - Order payment.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL - Truncate STA_Orders"
+      DTS:refId="Package\SQL - Truncate STA_Order_payment"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{E6AA66B3-6D5F-4C8D-BECF-CFF56FE872D3}"
+      DTS:DTSID="{EC8DAB1B-846F-4773-B6DF-791DD00B6AC7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL - Truncate STA_Orders"
+      DTS:ObjectName="SQL - Truncate STA_Order_payment"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CF87CDF7-F30C-485E-B8E8-41407067DB3A}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.STA_Orders" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.STA_Order_payment" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -662,11 +509,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{B6EA7249-A0FB-4CF7-BD31-A2FA3B542FB9}"
-      DTS:From="Package\SQL - Truncate STA_Orders"
+      DTS:DTSID="{9187F77F-3793-46DE-A4DD-8F304D00B519}"
+      DTS:From="Package\SQL - Truncate STA_Order_payment"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\DFT - STA Orders" />
+      DTS:To="Package\DFT - STA Order payment" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -681,27 +528,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\DFT - STA Orders"
-          TopLeft="82.3055513590852,130.155554688716" />
+          Size="200,41.6"
+          Id="Package\DFT - STA Order payment"
+          TopLeft="99.6666615216271,234.299998408953" />
         <NodeLayout
-          Size="209.6,41.6"
-          Id="Package\SQL - Truncate STA_Orders"
-          TopLeft="54.1111084551172,11.9999999547998" />
+          Size="250.4,41.6"
+          Id="Package\SQL - Truncate STA_Order_payment"
+          TopLeft="70.4999980876845,84.0333329958386" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="161.208329907101,53.5999999547998">
+          TopLeft="197.683329804656,125.633332995839">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,76.5555547339166"
+              EndConnector="0,108.666665413115"
               Start="0,0"
-              End="0,69.0555547339166">
+              End="0,101.166665413115">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,69.0555547339166" />
+                    End="0,101.166665413115" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -714,32 +561,32 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\DFT - STA Orders">
+    design-time-name="Package\DFT - STA Order payment">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="159.2,41.6"
-          Id="Package\DFT - STA Orders\FF_SRC - Orders"
-          TopLeft="87.4444399671976,49.5555552491987" />
+          Size="196.8,41.6"
+          Id="Package\DFT - STA Order payment\FF_SRC - Order payment"
+          TopLeft="85.4999956289929,55.7666663171185" />
         <NodeLayout
           Size="155.2,41.6"
-          Id="Package\DFT - STA Orders\OLE_DST - STA"
-          TopLeft="91.7499969266355,177.777776788396" />
+          Id="Package\DFT - STA Order payment\OLE_DST - STA"
+          TopLeft="102.166663024161,194.099998897115" />
         <EdgeLayout
-          Id="Package\DFT - STA Orders.Paths[Flat File Source Output]"
-          TopLeft="168.197218446917,91.1555552491988">
+          Id="Package\DFT - STA Order payment.Paths[Flat File Source Output]"
+          TopLeft="181.833329326577,97.3666663171186">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.6222215391971"
+              EndConnector="0,96.7333325799968"
               Start="0,0"
-              End="0,79.1222215391971">
+              End="0,89.2333325799968">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.1222215391971" />
+                    End="0,89.2333325799968" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -752,7 +599,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - STA Orders\OLE_DST - STA">
+    design-time-name="Package\DFT - STA Order payment\OLE_DST - STA">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
