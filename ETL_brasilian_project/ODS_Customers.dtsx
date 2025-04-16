@@ -11,24 +11,10 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ODS_Customers"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{D3A4447A-4993-40C2-A9E2-3A7787775E64}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{742BC6F4-6B40-4567-9E55-6A5D6579B02A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.ODS_brazilian_store]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{7CC33AAD-1407-44D1-AB77-5FFCED148A28}"
-      DTS:ObjectName="localhost.ODS_brazilian_store">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=ODS_brazilian_store;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-ODS_Customers-{7CC33AAD-1407-44D1-AB77-5FFCED148A28}localhost.ODS_brazilian_store;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -270,8 +256,8 @@
               <connections>
                 <connection
                   refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.ODS_brazilian_store]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.ODS_brazilian_store]"
+                  connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -589,7 +575,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{7CC33AAD-1407-44D1-AB77-5FFCED148A28}"
+          SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.ODS_Customers" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -619,25 +605,25 @@
         <NodeLayout
           Size="183.2,41.6"
           Id="Package\DFT - ODS Customers"
-          TopLeft="85.4999972681206,154.233332507676" />
+          TopLeft="92.4999972681206,204.233332507676" />
         <NodeLayout
           Size="227.2,41.6"
           Id="Package\SQL - Truncate ODS Customers"
-          TopLeft="61.33333356099,32.566666895681" />
+          TopLeft="69.33333356099,35.566666895681" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="176.016665414555,74.1666668956809">
+          TopLeft="183.516665414555,77.166666895681">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,80.0666656119955"
+              EndConnector="0,127.066665611995"
               Start="0,0"
-              End="0,72.5666656119955">
+              End="0,119.566665611995">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,72.5666656119955" />
+                    End="0,119.566665611995" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -655,13 +641,17 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="208.8,41.6"
-          Id="Package\DFT - ODS Customers\OLE_SRC - STA Customers"
-          TopLeft="50.5757551129269,16.6878787100797" />
+          Size="210.4,41.6"
+          Id="Package\DFT - ODS Customers\OLE_DST - ODS Customers"
+          TopLeft="51.8636371086944,264.833331947194" />
         <NodeLayout
           Size="156.8,41.6"
           Id="Package\DFT - ODS Customers\DCNV - Resizing"
           TopLeft="75.954541605079,135.499999095996" />
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\DFT - ODS Customers\OLE_SRC - STA Customers"
+          TopLeft="50.5757551129269,16.6878787100797" />
         <EdgeLayout
           Id="Package\DFT - ODS Customers.Paths[OLE DB Source Output]"
           TopLeft="154.665148359003,58.2878787100797">
@@ -684,24 +674,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="210.4,41.6"
-          Id="Package\DFT - ODS Customers\OLE_DST - ODS Customers"
-          TopLeft="51.8636371086944,264.833331947194" />
         <EdgeLayout
           Id="Package\DFT - ODS Customers.Paths[Data Conversion Output]"
           TopLeft="155.709089356887,177.099999095996">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,87.7333328511979"
+              EndConnector="0,87.733332851198"
               Start="0,0"
-              End="0,80.2333328511979">
+              End="0,80.233332851198">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,80.2333328511979" />
+                    End="0,80.233332851198" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -714,7 +700,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - ODS Customers\OLE_SRC - STA Customers">
+    design-time-name="Package\DFT - ODS Customers\OLE_DST - ODS Customers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -727,7 +713,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - ODS Customers\OLE_DST - ODS Customers">
+    design-time-name="Package\DFT - ODS Customers\OLE_SRC - STA Customers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
