@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{1AA55CDB-FE39-44D4-8CEA-616C7DC31ED5}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{CB7E7E77-A896-4450-ABEC-23027B063158}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -3351,12 +3351,12 @@ where [refTable].[product_category_name] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output3]"
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output]"
               endId="Package\DFT - ODS Products\DER - Rejects Product height cm.Inputs[Derived Column Input]"
               name="Data Conversion Error Output"
               startId="Package\DFT - ODS Products\DCNV - Product height cm.Outputs[Data Conversion Error Output]" />
             <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output4]"
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output1]"
               endId="Package\DFT - ODS Products\DER - Rejects Product width cm.Inputs[Derived Column Input]"
               name="Data Conversion Error Output"
               startId="Package\DFT - ODS Products\DCNV - Product width cm.Outputs[Data Conversion Error Output]" />
@@ -3366,45 +3366,45 @@ where [refTable].[product_category_name] = ?</property>
               name="Data Conversion Error Output"
               startId="Package\DFT - ODS Products\DCNV - Product lenght cm.Outputs[Data Conversion Error Output]" />
             <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output1]"
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output3]"
               endId="Package\DFT - ODS Products\DER - Rejects Product weight g.Inputs[Derived Column Input]"
               name="Data Conversion Error Output"
               startId="Package\DFT - ODS Products\DCNV - Product weight g.Outputs[Data Conversion Error Output]" />
             <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output]"
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Error Output4]"
               endId="Package\DFT - ODS Products\DER - Rejects Product photo qty.Inputs[Derived Column Input]"
               name="Data Conversion Error Output"
               startId="Package\DFT - ODS Products\DCNV - Product photo qty.Outputs[Data Conversion Error Output]" />
             <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Output4]"
-              endId="Package\DFT - ODS Products\DCNV - Resizing.Inputs[Data Conversion Input]"
-              name="Data Conversion Output"
-              startId="Package\DFT - ODS Products\DCNV - Product width cm.Outputs[Data Conversion Output]" />
-            <path
               refId="Package\DFT - ODS Products.Paths[Data Conversion Output5]"
+              endId="Package\DFT - ODS Products\DCNV - Product width cm.Inputs[Data Conversion Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT - ODS Products\DCNV - Product height cm.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Output3]"
+              endId="Package\DFT - ODS Products\DCNV - Product lenght cm.Inputs[Data Conversion Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT - ODS Products\DCNV - Product weight g.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Output4]"
+              endId="Package\DFT - ODS Products\DCNV - Product weight g.Inputs[Data Conversion Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT - ODS Products\DCNV - Product photo qty.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Output1]"
               endId="Package\DFT - ODS Products\OLE_DST - ODS Products.Inputs[OLE DB Destination Input]"
               name="Data Conversion Output"
               startId="Package\DFT - ODS Products\DCNV - Resizing.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT - ODS Products.Paths[Data Conversion Output]"
+              endId="Package\DFT - ODS Products\DCNV - Resizing.Inputs[Data Conversion Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT - ODS Products\DCNV - Product width cm.Outputs[Data Conversion Output]" />
             <path
               refId="Package\DFT - ODS Products.Paths[Data Conversion Output2]"
               endId="Package\DFT - ODS Products\DCNV - Product height cm.Inputs[Data Conversion Input]"
               name="Data Conversion Output"
               startId="Package\DFT - ODS Products\DCNV - Product lenght cm.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Output1]"
-              endId="Package\DFT - ODS Products\DCNV - Product lenght cm.Inputs[Data Conversion Input]"
-              name="Data Conversion Output"
-              startId="Package\DFT - ODS Products\DCNV - Product weight g.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Output]"
-              endId="Package\DFT - ODS Products\DCNV - Product weight g.Inputs[Data Conversion Input]"
-              name="Data Conversion Output"
-              startId="Package\DFT - ODS Products\DCNV - Product photo qty.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\DFT - ODS Products.Paths[Data Conversion Output3]"
-              endId="Package\DFT - ODS Products\DCNV - Product width cm.Inputs[Data Conversion Input]"
-              name="Data Conversion Output"
-              startId="Package\DFT - ODS Products\DCNV - Product height cm.Outputs[Data Conversion Output]" />
             <path
               refId="Package\DFT - ODS Products.Paths[Derived Column Output]"
               endId="Package\DFT - ODS Products\Union All Rejects.Inputs[Union All Input 1]"
@@ -3490,11 +3490,11 @@ where [refTable].[product_category_name] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="173.6,41.6"
+          Size="174,42"
           Id="Package\DFT - ODS Products"
           TopLeft="51.7121186872024,155.118180777756" />
         <NodeLayout
-          Size="212.8,41.6"
+          Size="213,42"
           Id="Package\SQL - Truncate ODS Product"
           TopLeft="30.4999986340603,40.8393944001619" />
         <EdgeLayout
@@ -3528,13 +3528,91 @@ where [refTable].[product_category_name] = ?</property>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="200,41.6"
+          Size="203,42"
+          Id="Package\DFT - ODS Products\LKP - Category Translation"
+          TopLeft="67.1666649364763,91.8333329415984" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\DFT - ODS Products\DER - Rejects Product weight g"
+          TopLeft="386.666645540132,285.999998011192" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\DFT - ODS Products\DER - Rejects Product lenght cm"
+          TopLeft="390.499983881912,362.800000325441" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\DFT - ODS Products\DCNV - Product weight g"
+          TopLeft="75.8333291899829,279.933331386712" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\DFT - ODS Products\DER - Rejects Product height cm"
+          TopLeft="378.833317852683,464.466666262878" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\DFT - ODS Products\DCNV - Product photo qty"
+          TopLeft="65.5000016391276,176.966666100158" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\DFT - ODS Products\OLE_DST - ADM TechnicalRejects"
+          TopLeft="1067.46662245575,360.766665141914" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\DFT - ODS Products\DCNV - Resizing"
+          TopLeft="80.4999959021809,657.033330482708" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\DFT - ODS Products\DER - Rejects Product width cm"
+          TopLeft="382.166651003891,565.399998933276" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\DFT - ODS Products\DER - Rejects Product photo qty"
+          TopLeft="387.999979101122,180.566665449275" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\DFT - ODS Products\DCNV - Product lenght cm"
+          TopLeft="67.1666632973487,362.466664852632" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\DFT - ODS Products\OLE_DST - ODS Products"
+          TopLeft="372.166646632884,659.099997034868" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\DFT - ODS Products\DCNV - Product width cm"
+          TopLeft="67.1666632973487,565.666664852632" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\DFT - ODS Products\Union All Rejects"
+          TopLeft="793.833290260701,354.433331730233" />
+        <NodeLayout
+          Size="200,42"
           Id="Package\DFT - ODS Products\OLE_SRC - STA Products"
           TopLeft="67.1666632973487,8.9666666425599" />
         <NodeLayout
-          Size="203.2,41.6"
-          Id="Package\DFT - ODS Products\LKP - Category Translation"
-          TopLeft="67.1666649364763,91.8333329415984" />
+          Size="201,42"
+          Id="Package\DFT - ODS Products\DCNV - Product height cm"
+          TopLeft="67.1666632973487,464.066664852632" />
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Union All Output 1]"
+          TopLeft="951.433290260701,378.399998436073">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.03333219505,0"
+              Start="0,0"
+              End="108.53333219505,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="108.53333219505,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - ODS Products.Paths[OLE DB Source Output]"
           TopLeft="167.966664116912,50.5666666425599">
@@ -3557,26 +3635,6 @@ where [refTable].[product_category_name] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="198.4,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Product photo qty"
-          TopLeft="65.5000016391276,176.966666100158" />
-        <NodeLayout
-          Size="194.4,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Product weight g"
-          TopLeft="75.8333291899829,279.933331386712" />
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Product lenght cm"
-          TopLeft="67.1666632973487,362.466664852632" />
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Product height cm"
-          TopLeft="67.1666632973487,464.066664852632" />
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Product width cm"
-          TopLeft="67.1666632973487,565.666664852632" />
         <EdgeLayout
           Id="Package\DFT - ODS Products.Paths[Lookup Match Output]"
           TopLeft="166.733333287802,133.433332941598">
@@ -3602,7 +3660,199 @@ where [refTable].[product_category_name] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Output]"
+          Id="Package\DFT - ODS Products.Paths[Derived Column Output4]"
+          TopLeft="495.366651003891,565.399998933276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="402.199972590143,-169.366667203042"
+              Start="0,0"
+              End="402.199972590143,-161.866667203042">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-96.5986937859277" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-96.5986937859277"
+                    Point2="0,-100.598693785928"
+                    Point3="4,-100.598693785928" />
+                  <mssgle:LineSegment
+                    End="398.199972590143,-100.598693785928" />
+                  <mssgle:CubicBezierSegment
+                    Point1="398.199972590143,-100.598693785928"
+                    Point2="402.199972590143,-100.598693785928"
+                    Point3="402.199972590143,-104.598693785928" />
+                  <mssgle:LineSegment
+                    End="402.199972590143,-161.866667203042" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Derived Column Output3]"
+          TopLeft="494.033317852683,464.466666262878">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="378.599972408018,-68.433334532645"
+              Start="0,0"
+              End="378.599972408018,-60.933334532645">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-30.2166672663225" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-30.2166672663225"
+                    Point2="0,-34.2166672663225"
+                    Point3="4,-34.2166672663225" />
+                  <mssgle:LineSegment
+                    End="374.599972408018,-34.2166672663225" />
+                  <mssgle:CubicBezierSegment
+                    Point1="374.599972408018,-34.2166672663225"
+                    Point2="378.599972408018,-34.2166672663225"
+                    Point3="378.599972408018,-38.2166672663225" />
+                  <mssgle:LineSegment
+                    End="378.599972408018,-60.933334532645" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Derived Column Output2]"
+          TopLeft="620.899983881912,383.600000325441">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.933306378789,-8.36666859520807"
+              Start="0,0"
+              End="165.433306378789,-8.36666859520807">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="82.4666531893947,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="82.4666531893947,0"
+                    Point2="86.4666531893947,0"
+                    Point3="86.4666531893947,-4" />
+                  <mssgle:LineSegment
+                    End="86.4666531893947,-4.36666859520807" />
+                  <mssgle:CubicBezierSegment
+                    Point1="86.4666531893947,-4.36666859520807"
+                    Point2="86.4666531893947,-8.36666859520807"
+                    Point3="90.4666531893947,-8.36666859520807" />
+                  <mssgle:LineSegment
+                    End="165.433306378789,-8.36666859520807" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Derived Column Output1]"
+          TopLeft="498.666645540132,327.599998011192">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="349.033311387235,26.8333337190417"
+              Start="0,0"
+              End="349.033311387235,19.3333337190417">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.938191183873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.938191183873"
+                    Point2="0,15.938191183873"
+                    Point3="4,15.938191183873" />
+                  <mssgle:LineSegment
+                    End="345.033311387235,15.938191183873" />
+                  <mssgle:CubicBezierSegment
+                    Point1="345.033311387235,15.938191183873"
+                    Point2="349.033311387235,15.938191183873"
+                    Point3="349.033311387235,19.938191183873" />
+                  <mssgle:LineSegment
+                    End="349.033311387235,19.3333337190417" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Derived Column Output]"
+          TopLeft="501.999979101122,222.166665449275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="370.633311159579,132.266666280958"
+              Start="0,0"
+              End="370.633311159579,124.766666280958">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.1333331404792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.1333331404792"
+                    Point2="0,66.1333331404792"
+                    Point3="4,66.1333331404792" />
+                  <mssgle:LineSegment
+                    End="366.633311159579,66.1333331404792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="366.633311159579,66.1333331404792"
+                    Point2="370.633311159579,66.1333331404792"
+                    Point3="370.633311159579,70.1333331404792" />
+                  <mssgle:LineSegment
+                    End="370.633311159579,124.766666280958" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Output5]"
+          TopLeft="166.566663297349,505.666664852632">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Output4]"
           TopLeft="164.700001639128,218.566666100158">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3636,7 +3886,7 @@ where [refTable].[product_category_name] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Output1]"
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Output3]"
           TopLeft="170.299996243666,321.533331386712">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3680,19 +3930,19 @@ where [refTable].[product_category_name] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Output3]"
-          TopLeft="166.566663297349,505.666664852632">
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Output1]"
+          TopLeft="237.299995902181,678.866663758788">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="134.866650730703,0"
               Start="0,0"
-              End="0,52.5">
+              End="127.366650730703,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="127.366650730703,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3701,12 +3951,30 @@ where [refTable].[product_category_name] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="228,41.6"
-          Id="Package\DFT - ODS Products\DER - Rejects Product photo qty"
-          TopLeft="387.999979101122,180.566665449275" />
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output]"
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Output]"
+          TopLeft="162.233329599765,607.266664852633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.7666656300756"
+              Start="0,0"
+              End="0,42.2666656300756">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.2666656300756" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output4]"
           TopLeft="263.900001639128,199.566665774716">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3729,24 +3997,8 @@ where [refTable].[product_category_name] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="224,41.6"
-          Id="Package\DFT - ODS Products\DER - Rejects Product weight g"
-          TopLeft="386.666645540132,285.999998011192" />
-        <NodeLayout
-          Size="230.4,41.6"
-          Id="Package\DFT - ODS Products\DER - Rejects Product lenght cm"
-          TopLeft="390.499983881912,362.800000325441" />
-        <NodeLayout
-          Size="230.4,41.6"
-          Id="Package\DFT - ODS Products\DER - Rejects Product height cm"
-          TopLeft="378.833317852683,464.466666262878" />
-        <NodeLayout
-          Size="226.4,41.6"
-          Id="Package\DFT - ODS Products\DER - Rejects Product width cm"
-          TopLeft="382.166651003891,565.399998933276" />
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output1]"
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output3]"
           TopLeft="270.233329189983,303.766664698952">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3794,31 +4046,7 @@ where [refTable].[product_category_name] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output3]"
-          TopLeft="267.966663297349,485.066665557755">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="110.866654555335,0"
-              Start="0,0"
-              End="103.366654555335,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="103.366654555335,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-14.4030594410827,5,132.1727734375,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output4]"
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output1]"
           TopLeft="263.966663297349,586.333331892954">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3841,281 +4069,40 @@ where [refTable].[product_category_name] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="157.6,41.6"
-          Id="Package\DFT - ODS Products\Union All Rejects"
-          TopLeft="793.833290260701,354.433331730233" />
         <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Derived Column Output]"
-          TopLeft="501.999979101122,222.166665449275">
+          Id="Package\DFT - ODS Products.Paths[Data Conversion Error Output]"
+          TopLeft="267.966663297349,485.066665557755">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="370.633311159579,132.266666280958"
+              EndConnector="110.866654555335,0"
               Start="0,0"
-              End="370.633311159579,124.766666280958">
+              End="103.366654555335,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.1333331404792" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,62.1333331404792"
-                    Point2="0,66.1333331404792"
-                    Point3="4,66.1333331404792" />
-                  <mssgle:LineSegment
-                    End="366.633311159579,66.1333331404792" />
-                  <mssgle:CubicBezierSegment
-                    Point1="366.633311159579,66.1333331404792"
-                    Point2="370.633311159579,66.1333331404792"
-                    Point3="370.633311159579,70.1333331404792" />
-                  <mssgle:LineSegment
-                    End="370.633311159579,124.766666280958" />
+                    End="103.366654555335,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Derived Column Output1]"
-          TopLeft="498.666645540132,327.599998011192">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="349.033311387235,26.8333337190417"
-              Start="0,0"
-              End="349.033311387235,19.3333337190417">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.938191183873" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.938191183873"
-                    Point2="0,15.938191183873"
-                    Point3="4,15.938191183873" />
-                  <mssgle:LineSegment
-                    End="345.033311387235,15.938191183873" />
-                  <mssgle:CubicBezierSegment
-                    Point1="345.033311387235,15.938191183873"
-                    Point2="349.033311387235,15.938191183873"
-                    Point3="349.033311387235,19.938191183873" />
-                  <mssgle:LineSegment
-                    End="349.033311387235,19.3333337190417" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Derived Column Output2]"
-          TopLeft="620.899983881912,383.600000325441">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="172.933306378789,-8.36666859520807"
-              Start="0,0"
-              End="165.433306378789,-8.36666859520807">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="82.4666531893947,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="82.4666531893947,0"
-                    Point2="86.4666531893947,0"
-                    Point3="86.4666531893947,-4" />
-                  <mssgle:LineSegment
-                    End="86.4666531893947,-4.36666859520807" />
-                  <mssgle:CubicBezierSegment
-                    Point1="86.4666531893947,-4.36666859520807"
-                    Point2="86.4666531893947,-8.36666859520807"
-                    Point3="90.4666531893947,-8.36666859520807" />
-                  <mssgle:LineSegment
-                    End="165.433306378789,-8.36666859520807" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Derived Column Output3]"
-          TopLeft="494.033317852683,464.466666262878">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="378.599972408018,-68.433334532645"
-              Start="0,0"
-              End="378.599972408018,-60.933334532645">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-30.2166672663225" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-30.2166672663225"
-                    Point2="0,-34.2166672663225"
-                    Point3="4,-34.2166672663225" />
-                  <mssgle:LineSegment
-                    End="374.599972408018,-34.2166672663225" />
-                  <mssgle:CubicBezierSegment
-                    Point1="374.599972408018,-34.2166672663225"
-                    Point2="378.599972408018,-34.2166672663225"
-                    Point3="378.599972408018,-38.2166672663225" />
-                  <mssgle:LineSegment
-                    End="378.599972408018,-60.933334532645" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Derived Column Output4]"
-          TopLeft="495.366651003891,565.399998933276">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="402.199972590143,-169.366667203042"
-              Start="0,0"
-              End="402.199972590143,-161.866667203042">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-96.5986937859277" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-96.5986937859277"
-                    Point2="0,-100.598693785928"
-                    Point3="4,-100.598693785928" />
-                  <mssgle:LineSegment
-                    End="398.199972590143,-100.598693785928" />
-                  <mssgle:CubicBezierSegment
-                    Point1="398.199972590143,-100.598693785928"
-                    Point2="402.199972590143,-100.598693785928"
-                    Point3="402.199972590143,-104.598693785928" />
-                  <mssgle:LineSegment
-                    End="402.199972590143,-161.866667203042" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="240,41.6"
-          Id="Package\DFT - ODS Products\OLE_DST - ADM TechnicalRejects"
-          TopLeft="1067.46662245575,360.766665141914" />
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Union All Output 1]"
-          TopLeft="951.433290260701,378.399998436073">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="116.03333219505,0"
-              Start="0,0"
-              End="108.53333219505,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="108.53333219505,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="156.8,41.6"
-          Id="Package\DFT - ODS Products\DCNV - Resizing"
-          TopLeft="80.4999959021809,657.033330482708" />
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Output4]"
-          TopLeft="162.233329599765,607.266664852633">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49.7666656300756"
-              Start="0,0"
-              End="0,42.2666656300756">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.2666656300756" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="200.8,41.6"
-          Id="Package\DFT - ODS Products\OLE_DST - ODS Products"
-          TopLeft="372.166646632884,659.099997034868" />
-        <EdgeLayout
-          Id="Package\DFT - ODS Products.Paths[Data Conversion Output5]"
-          TopLeft="237.299995902181,678.866663758788">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="134.866650730703,0"
-              Start="0,0"
-              End="127.366650730703,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="127.366650730703,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-14.4030594410827,5,132.1727734375,11.43359375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - ODS Products\OLE_SRC - STA Products">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DFT - ODS Products\LKP - Category Translation">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -4125,7 +4112,7 @@ where [refTable].[product_category_name] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4147,6 +4134,19 @@ where [refTable].[product_category_name] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DFT - ODS Products\OLE_DST - ODS Products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - ODS Products\OLE_SRC - STA Products">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
