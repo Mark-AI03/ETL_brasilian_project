@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="4/16/2025 10:22:03 PM"
+  DTS:CreationDate="4/17/2025 2:23:42 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="STYR0"
   DTS:CreatorName="STYR0\karam"
-  DTS:DTSID="{5948B9E2-4EFB-443E-B21A-E62A64A585AC}"
+  DTS:DTSID="{3402D57B-64D3-46DD-9181-F0FA163965A1}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="14348"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="DWH_Reviews"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{7D3154B3-5BAB-4172-9C0B-2C979B0719C0}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{D6FB4CB6-191F-4CB4-85FB-ACA4948F2175}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\DFT - DWH Orders"
+      DTS:refId="Package\DFT - DWH Reviews"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{A42AB196-9272-4CAD-942F-D257C79D3861}"
+      DTS:DTSID="{EA92F275-8B76-4253-9697-C961A7312A8B}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="DFT - DWH Orders"
+      DTS:ObjectName="DFT - DWH Reviews"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -32,11 +32,11 @@
           version="1">
           <components>
             <component
-              refId="Package\DFT - DWH Orders\CMD - Update Orders"
+              refId="Package\DFT - DWH Reviews\CMD - Update Changes"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="CMD - Update Orders"
+              name="CMD - Update Changes"
               usesDispositions="true"
               version="2">
               <properties>
@@ -49,13 +49,10 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimOrders]
-   SET [customer_id] = ?
-      ,[order_status] = ?
-      ,[Purchase_DATE] = ?
-      ,[Delivery_DATE] = ?
-      ,[Estimated_delivery_DATE] = ?
- WHERE [order_id] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimOrder_review]
+   SET [order_id] = ?
+      ,[review_score] = ?
+ WHERE [review_id] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -63,7 +60,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - DWH Orders\CMD - Update Orders.Connections[OleDbConnection]"
+                  refId="Package\DFT - DWH Reviews\CMD - Update Changes.Connections[OleDbConnection]"
                   connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
                   description="The OLE DB runtime connection used to access the database."
@@ -71,59 +68,40 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input]"
+                  refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input]"
                   errorOrTruncationOperation="Command Execution"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[customer_id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="customer_id"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[order_status]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="order_status"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[Purchase_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Purchase_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[Delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Delivery_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[Estimated_delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Estimated_delivery_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].Columns[order_id]"
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].Columns[order_id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_id"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]" />
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].Columns[review_score]"
+                      cachedDataType="numeric"
+                      cachedName="review_score"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].Columns[review_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_id"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -136,57 +114,23 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="Param_1">
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="18">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
+                          name="DBParamInfoFlags">81</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="dbTimeStamp"
-                      name="Param_2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="dbTimeStamp"
-                      name="Param_3">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="dbTimeStamp"
-                      name="Param_4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      name="Param_5">
+                      name="Param_2">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -199,29 +143,29 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Output]"
+                  refId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Output]"
                   exclusionGroup="1"
                   name="OLE DB Command Output"
-                  synchronousInputId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Error Output]"
+                  refId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Command Error Output"
-                  synchronousInputId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\CMD - Update Orders.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - DWH Reviews\CMD - Update Changes.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -230,7 +174,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\DFT - DWH Orders\LKP - AnyChanges"
+              refId="Package\DFT - DWH Reviews\LKP - AnyChanges"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -243,14 +187,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimOrders]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimOrder_review]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimOrders]) [refTable]
-where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTable].[Purchase_DATE] = ? and [refTable].[Delivery_DATE] = ? and [refTable].[Estimated_delivery_DATE] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimOrder_review]) [refTable]
+where [refTable].[order_id] = ? and [refTable].[review_score] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -281,12 +225,12 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="orderKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="order_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="customer_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="order_status" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Purchase_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Delivery_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Estimated_delivery_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="reviewKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="review_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="order_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="review_score" dataType="DT_NUMERIC" length="0" precision="18" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]};#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]};#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]};#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]};#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]};</property>
+                  name="ParameterMap">#{Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]};#{Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -298,7 +242,7 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - DWH Orders\LKP - AnyChanges.Connections[OleDbConnection]"
+                  refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Connections[OleDbConnection]"
                   connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
                   description="Connection manager used to access lookup data."
@@ -306,21 +250,21 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input]"
+                  refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input].Columns[customer_id]"
+                      refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input].Columns[order_id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="customer_id"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      cachedName="order_id"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">customer_id</property>
+                          name="JoinToReferenceColumn">order_id</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -328,65 +272,16 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input].Columns[order_status]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="order_status"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]">
+                      refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input].Columns[review_score]"
+                      cachedDataType="numeric"
+                      cachedName="review_score"
+                      cachedPrecision="18"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">order_status</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input].Columns[Delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Delivery_DATE"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">Delivery_DATE</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input].Columns[Estimated_delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Estimated_delivery_DATE"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">Estimated_delivery_DATE</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input].Columns[Purchase_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Purchase_DATE"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">Purchase_DATE</property>
+                          name="JoinToReferenceColumn">review_score</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -399,38 +294,38 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Match Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup No Match Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Error Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -439,151 +334,7 @@ where [refTable].[customer_id] = ? and [refTable].[order_status] = ? and [refTab
               </outputs>
             </component>
             <component
-              refId="Package\DFT - DWH Orders\LKP - CustomerID"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="LKP - CustomerID"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimCustomers]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimCustomers]) [refTable]
-where [refTable].[customer_id] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="customerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customer_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="customer_city" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="customer_state" dataType="DT_STR" length="3" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="customer_zipcode" dataType="DT_STR" length="6" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DFT - DWH Orders\LKP - CustomerID.Connections[OleDbConnection]"
-                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input].Columns[customer_id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="customer_id"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">customer_id</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DFT - DWH Orders\LKP - OrderID"
+              refId="Package\DFT - DWH Reviews\LKP - OrderID"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -639,7 +390,7 @@ where [refTable].[order_id] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]};</property>
+                  name="ParameterMap">#{Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -651,7 +402,7 @@ where [refTable].[order_id] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - DWH Orders\LKP - OrderID.Connections[OleDbConnection]"
+                  refId="Package\DFT - DWH Reviews\LKP - OrderID.Connections[OleDbConnection]"
                   connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
                   description="Connection manager used to access lookup data."
@@ -659,16 +410,16 @@ where [refTable].[order_id] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input]"
+                  refId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input].Columns[order_id]"
+                      refId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input].Columns[order_id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_id"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]">
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -686,38 +437,38 @@ where [refTable].[order_id] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Match Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup No Match Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Error Output]"
+                  refId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -726,11 +477,154 @@ where [refTable].[order_id] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DFT - DWH Orders\OLE_DST DimOrders"
+              refId="Package\DFT - DWH Reviews\LKP - ReviewID"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - ReviewID"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimOrder_review]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimOrder_review]) [refTable]
+where [refTable].[review_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="reviewKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="review_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="order_id" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="review_score" dataType="DT_NUMERIC" length="0" precision="18" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Reviews\LKP - ReviewID.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input].Columns[review_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_id"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">review_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Reviews\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE_DST DimOrders"
+              name="OLE DB Destination"
               usesDispositions="true"
               version="4">
               <properties>
@@ -741,7 +635,7 @@ where [refTable].[order_id] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[DimOrders]</property>
+                  name="OpenRowset">[dbo].[DimOrder_review]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -783,7 +677,7 @@ where [refTable].[order_id] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Connections[OleDbConnection]"
+                  refId="Package\DFT - DWH Reviews\OLE DB Destination.Connections[OleDbConnection]"
                   connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
                   description="The OLE DB runtime connection used to access the database."
@@ -791,112 +685,80 @@ where [refTable].[order_id] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input]"
+                  refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[review_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="review_id"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_id]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="order_id"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]" />
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]" />
                     <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[customer_id]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="customer_id"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[order_status]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="20"
-                      cachedName="order_status"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[Purchase_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Purchase_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Purchase_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[Delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Delivery_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Delivery_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]" />
-                    <inputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].Columns[Estimated_delivery_DATE]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Estimated_delivery_DATE"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_delivery_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]" />
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[review_score]"
+                      cachedDataType="numeric"
+                      cachedName="review_score"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_score]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[orderKey]"
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[reviewKey]"
                       dataType="i4"
-                      name="orderKey" />
+                      name="reviewKey" />
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="review_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="customer_id" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="order_status" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Purchase_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Purchase_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Delivery_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input].ExternalColumns[Estimated_delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Estimated_delivery_DATE" />
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[review_score]"
+                      dataType="numeric"
+                      name="review_score"
+                      precision="18" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DFT - DWH Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\OLE_DST DimOrders.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - DWH Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_DST DimOrders.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - DWH Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\OLE_DST DimOrders.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - DWH Reviews\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -905,11 +767,11 @@ where [refTable].[order_id] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders"
+              refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE_SRC ODS Orders"
+              name="OLE_SRC ODS Reviews"
               usesDispositions="true"
               version="7">
               <properties>
@@ -920,7 +782,7 @@ where [refTable].[order_id] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[ODS_Orders]</property>
+                  name="OpenRowset">[dbo].[ODS_Order_review]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -954,7 +816,7 @@ where [refTable].[order_id] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Connections[OleDbConnection]"
+                  refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Connections[OleDbConnection]"
                   connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
                   connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
                   description="The OLE DB runtime connection used to access the database."
@@ -962,155 +824,98 @@ where [refTable].[order_id] = ?</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output]"
+                  refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[review_id]"
                       length="50"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_id]"
+                      name="review_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[order_id]"
                       name="order_id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
-                      codePage="1252"
-                      dataType="str"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]"
+                      dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
-                      length="50"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
-                      name="customer_id"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]"
-                      codePage="1252"
-                      dataType="str"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
-                      length="20"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]"
-                      name="order_status"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
-                      name="Purchase_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
-                      name="Delivery_DATE"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
-                      name="Estimated_delivery_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[review_score]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].Columns[review_score]"
+                      name="review_score"
+                      precision="18"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[review_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="review_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="order_id" />
                     <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="customer_id" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      name="order_status" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Purchase_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Delivery_DATE" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      name="Estimated_delivery_DATE" />
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output].ExternalColumns[review_score]"
+                      dataType="numeric"
+                      name="review_score"
+                      precision="18" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[review_id]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[review_id]"
+                      name="review_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[order_id]"
                       name="order_id" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
-                      name="customer_id" />
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[review_score]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[review_score]"
+                      name="review_score"
+                      precision="18" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
-                      codePage="1252"
-                      dataType="str"
-                      length="20"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
-                      name="order_status" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
-                      name="Purchase_DATE" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
-                      name="Delivery_DATE" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
-                      name="Estimated_delivery_DATE" />
-                    <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1121,30 +926,30 @@ where [refTable].[order_id] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\DFT - DWH Orders.Paths[Lookup Match Output]"
-              endId="Package\DFT - DWH Orders\LKP - AnyChanges.Inputs[Lookup Input]"
+              refId="Package\DFT - DWH Reviews.Paths[Lookup Match Output]"
+              endId="Package\DFT - DWH Reviews\LKP - ReviewID.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup Match Output]" />
+              startId="Package\DFT - DWH Reviews\LKP - OrderID.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\DFT - DWH Orders.Paths[Lookup Match Output1]"
-              endId="Package\DFT - DWH Orders\LKP - OrderID.Inputs[Lookup Input]"
+              refId="Package\DFT - DWH Reviews.Paths[Lookup Match Output1]"
+              endId="Package\DFT - DWH Reviews\LKP - AnyChanges.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DFT - DWH Orders\LKP - CustomerID.Outputs[Lookup Match Output]" />
+              startId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\DFT - DWH Orders.Paths[Lookup No Match Output]"
-              endId="Package\DFT - DWH Orders\CMD - Update Orders.Inputs[OLE DB Command Input]"
+              refId="Package\DFT - DWH Reviews.Paths[Lookup No Match Output]"
+              endId="Package\DFT - DWH Reviews\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Lookup No Match Output"
-              startId="Package\DFT - DWH Orders\LKP - AnyChanges.Outputs[Lookup No Match Output]" />
+              startId="Package\DFT - DWH Reviews\LKP - ReviewID.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\DFT - DWH Orders.Paths[Lookup No Match Output1]"
-              endId="Package\DFT - DWH Orders\OLE_DST DimOrders.Inputs[OLE DB Destination Input]"
+              refId="Package\DFT - DWH Reviews.Paths[Lookup No Match Output1]"
+              endId="Package\DFT - DWH Reviews\CMD - Update Changes.Inputs[OLE DB Command Input]"
               name="Lookup No Match Output"
-              startId="Package\DFT - DWH Orders\LKP - OrderID.Outputs[Lookup No Match Output]" />
+              startId="Package\DFT - DWH Reviews\LKP - AnyChanges.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\DFT - DWH Orders.Paths[OLE DB Source Output]"
-              endId="Package\DFT - DWH Orders\LKP - CustomerID.Inputs[Lookup Input]"
+              refId="Package\DFT - DWH Reviews.Paths[OLE DB Source Output]"
+              endId="Package\DFT - DWH Reviews\LKP - OrderID.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\DFT - DWH Orders\OLE_SRC ODS Orders.Outputs[OLE DB Source Output]" />
+              startId="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1163,127 +968,55 @@ where [refTable].[order_id] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\DFT - DWH Orders"
-          TopLeft="137,105" />
+          Size="181,42"
+          Id="Package\DFT - DWH Reviews"
+          TopLeft="158,146" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\DFT - DWH Orders">
+    design-time-name="Package\DFT - DWH Reviews">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="194,42"
-          Id="Package\DFT - DWH Orders\OLE_SRC ODS Orders"
-          TopLeft="119,72" />
+          Size="202,42"
+          Id="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews"
+          TopLeft="214,99" />
         <NodeLayout
           Size="148,42"
-          Id="Package\DFT - DWH Orders\LKP - OrderID"
-          TopLeft="133,267" />
+          Id="Package\DFT - DWH Reviews\LKP - OrderID"
+          TopLeft="223,202" />
         <NodeLayout
-          Size="185,42"
-          Id="Package\DFT - DWH Orders\OLE_DST DimOrders"
-          TopLeft="147,392" />
-        <NodeLayout
-          Size="172,42"
-          Id="Package\DFT - DWH Orders\LKP - AnyChanges"
-          TopLeft="494,251" />
+          Size="177,42"
+          Id="Package\DFT - DWH Reviews\OLE DB Destination"
+          TopLeft="213,377" />
         <EdgeLayout
-          Id="Package\DFT - DWH Orders.Paths[Lookup Match Output]"
-          TopLeft="281,288">
+          Id="Package\DFT - DWH Reviews.Paths[OLE DB Source Output]"
+          TopLeft="315,141">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="213,-16"
+              EndConnector="-18,61"
               Start="0,0"
-              End="205.5,-16">
+              End="-18,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="102.5,0" />
+                    End="0,26.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="102.5,0"
-                    Point2="106.5,0"
-                    Point3="106.5,-4" />
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
                   <mssgle:LineSegment
-                    End="106.5,-12" />
+                    End="-14,30.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="106.5,-12"
-                    Point2="106.5,-16"
-                    Point3="110.5,-16" />
+                    Point1="-14,30.5"
+                    Point2="-18,30.5"
+                    Point3="-18,34.5" />
                   <mssgle:LineSegment
-                    End="205.5,-16" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="58.30861328125,1,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="186,42"
-          Id="Package\DFT - DWH Orders\CMD - Update Orders"
-          TopLeft="816,158" />
-        <EdgeLayout
-          Id="Package\DFT - DWH Orders.Paths[Lookup No Match Output]"
-          TopLeft="580,251">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="329,-51"
-              Start="0,0"
-              End="329,-43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-21.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-21.5"
-                    Point2="0,-25.5"
-                    Point3="4,-25.5" />
-                  <mssgle:LineSegment
-                    End="325,-25.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="325,-25.5"
-                    Point2="329,-25.5"
-                    Point3="329,-29.5" />
-                  <mssgle:LineSegment
-                    End="329,-43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="108.69361328125,-20.5,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="168,42"
-          Id="Package\DFT - DWH Orders\LKP - CustomerID"
-          TopLeft="133,162" />
-        <EdgeLayout
-          Id="Package\DFT - DWH Orders.Paths[OLE DB Source Output]"
-          TopLeft="216.5,114">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="-18,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1292,75 +1025,147 @@ where [refTable].[order_id] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT - DWH Reviews\LKP - ReviewID"
+          TopLeft="209,280" />
         <EdgeLayout
-          Id="Package\DFT - DWH Orders.Paths[Lookup Match Output1]"
-          TopLeft="217,204">
+          Id="Package\DFT - DWH Reviews.Paths[Lookup Match Output]"
+          TopLeft="297,244">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-10,63"
+              EndConnector="-10,36"
               Start="0,0"
-              End="-10,55.5">
+              End="-10,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.5" />
+                    End="0,14" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,27.5"
-                    Point2="0,31.5"
-                    Point3="-4,31.5" />
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="-4,18" />
                   <mssgle:LineSegment
-                    End="-6,31.5" />
+                    End="-6,18" />
                   <mssgle:CubicBezierSegment
-                    Point1="-6,31.5"
-                    Point2="-10,31.5"
-                    Point3="-10,35.5" />
+                    Point1="-6,18"
+                    Point2="-10,18"
+                    Point3="-10,22" />
                   <mssgle:LineSegment
-                    End="-10,55.5" />
+                    End="-10,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-53.19138671875,36.5,96.3827734375,11.609375"
+              BoundingBox="-53.19138671875,23,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT - DWH Orders.Paths[Lookup No Match Output1]"
-          TopLeft="207,309">
+          Id="Package\DFT - DWH Reviews.Paths[Lookup No Match Output]"
+          TopLeft="287,322">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="32.5,83"
+              EndConnector="14.5,55"
               Start="0,0"
-              End="32.5,75.5">
+              End="14.5,47.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,23.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,37.5"
-                    Point2="0,41.5"
-                    Point3="4,41.5" />
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
                   <mssgle:LineSegment
-                    End="28.5,41.5" />
+                    End="10.5,27.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="28.5,41.5"
-                    Point2="32.5,41.5"
-                    Point3="32.5,45.5" />
+                    Point1="10.5,27.5"
+                    Point2="14.5,27.5"
+                    Point3="14.5,31.5" />
                   <mssgle:LineSegment
-                    End="32.5,75.5" />
+                    End="14.5,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-39.55638671875,46.5,111.6127734375,11.609375"
+              BoundingBox="-48.55638671875,32.5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DFT - DWH Reviews\LKP - AnyChanges"
+          TopLeft="505,280" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Reviews.Paths[Lookup Match Output1]"
+          TopLeft="365,301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="140,0"
+              Start="0,0"
+              End="132.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="132.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.05861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196,42"
+          Id="Package\DFT - DWH Reviews\CMD - Update Changes"
+          TopLeft="809,263" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Reviews.Paths[Lookup No Match Output1]"
+          TopLeft="677,301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132,-17"
+              Start="0,0"
+              End="124.5,-17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="62,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62,0"
+                    Point2="66,0"
+                    Point3="66,-4" />
+                  <mssgle:LineSegment
+                    End="66,-13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="66,-13"
+                    Point2="66,-17"
+                    Point3="70,-17" />
+                  <mssgle:LineSegment
+                    End="124.5,-17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="10.19361328125,1,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1368,7 +1173,7 @@ where [refTable].[order_id] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - DWH Orders\OLE_SRC ODS Orders">
+    design-time-name="Package\DFT - DWH Reviews\OLE_SRC ODS Reviews">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1381,7 +1186,7 @@ where [refTable].[order_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - DWH Orders\LKP - OrderID">
+    design-time-name="Package\DFT - DWH Reviews\LKP - OrderID">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1404,7 +1209,7 @@ where [refTable].[order_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - DWH Orders\OLE_DST DimOrders">
+    design-time-name="Package\DFT - DWH Reviews\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1417,7 +1222,7 @@ where [refTable].[order_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - DWH Orders\LKP - AnyChanges">
+    design-time-name="Package\DFT - DWH Reviews\LKP - ReviewID">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1427,7 +1232,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimOrders]</Value>
+          type="q3:string">[dbo].[DimOrder_review]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
@@ -1440,7 +1245,7 @@ where [refTable].[order_id] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - DWH Orders\LKP - CustomerID">
+    design-time-name="Package\DFT - DWH Reviews\LKP - AnyChanges">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -1450,7 +1255,7 @@ where [refTable].[order_id] = ?</property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimCustomers]</Value>
+          type="q3:string">[dbo].[DimOrder_review]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
