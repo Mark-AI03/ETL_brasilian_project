@@ -1,0 +1,2020 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/17/2025 5:45:35 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STYR0"
+  DTS:CreatorName="STYR0\karam"
+  DTS:DTSID="{31CC8326-1280-4356-898A-4B3C2269FA39}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="14348"
+  DTS:ObjectName="Complete_Process"
+  DTS:PackageType="5"
+  DTS:VersionBuild="44"
+  DTS:VersionGUID="{51E8EFB6-D013-4722-B404-E25894C055BE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8B2E8FFB-4922-477E-9AB8-4C2B8BEF2F86}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_complete_payment_information">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_complete_payment_information]', 'U') IS NOT NULL         DROP TABLE [dbo].[ODS_complete_payment_information];              CREATE TABLE [dbo].[ODS_complete_payment_information](         [informationID] [varchar](50) NULL,         [order_id] [varchar](50) NULL,         [customer_id] [varchar](50) NULL,         [order_status] [varchar](20) NULL,         [Delivery_DATE] [datetime] NULL,         [payment_type_no_underscore] [nvarchar](70) NULL,         [payment_value_int] [numeric](18, 2) NULL,         [payment_installments_int] [numeric](18, 0) NULL,         [review_score] [numeric](18, 0) NULL     )ON [PRIMARY]     WITH (DATA_COMPRESSION = PAGE);</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2AD42CF8-06E3-4BEB-A7E2-1F47B962A8FA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_Customers">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_Customers]', 'U') IS NOT NULL         DROP TABLE [dbo].[ODS_Customers];    CREATE TABLE [dbo].[ODS_Customers](         [customer_id] [varchar](50) NULL,         [customer_city] [varchar](50) NULL,         [customer_state] [varchar](3) NULL,         [customer_zipcode] [varchar](6) NULL     )ON [PRIMARY]     WITH (DATA_COMPRESSION = PAGE);</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1AC46720-03E3-4512-A0D5-D4721780E81C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_Database">
+      <DTS:VariableValue
+        DTS:DataType="8">IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'ODS_brazilian_store')     CREATE DATABASE [ODS_brazilian_store]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F26B3F98-5F2B-4ACC-BF70-33A7C15F3EEE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_OrderItems">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_Order_items]', 'U') IS NOT NULL         DROP TABLE [dbo].[ODS_Order_items];              CREATE TABLE [dbo].[ODS_Order_items](         [order_item_id] [varchar](50) NULL,         [order_id] [varchar](50) NULL,         [product_id] [varchar](50) NULL,         [seller_id] [varchar](50) NULL,         [Price_int] [numeric](18, 2) NULL,         [Freight_value_int] [numeric](18, 2) NULL,         [TotalPrice] [numeric](19, 2) NULL,         [ShippingLimit_DATE] [datetime] NULL     )ON [PRIMARY]     WITH (DATA_COMPRESSION = PAGE);</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{404ED5F3-1678-4E5C-9CAB-F53058D4C40B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_Orders">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_Orders]', 'U') IS NOT NULL     DROP TABLE [dbo].[ODS_Orders]  CREATE TABLE [dbo].[ODS_Orders](     [order_id] [varchar](50) NULL,     [customer_id] [varchar](50) NULL,     [order_status] [varchar](20) NULL,     [Purchase_DATE] [datetime] NULL,     [Delivery_DATE] [datetime] NULL,     [Estimated_delivery_DATE] [datetime] NULL ) ON [PRIMARY] WITH ( DATA_COMPRESSION = PAGE )</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{038D5F89-A472-41BD-AB44-02EC689DDC4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_Order_review">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_Order_review]', 'U') IS NOT NULL     DROP TABLE [dbo].[ODS_Order_review]  CREATE TABLE [dbo].[ODS_Order_review](     [review_id] [varchar](50) NULL,     [order_id] [varchar](50) NULL,     [review_score] [numeric](18, 0) NULL ) ON [PRIMARY] WITH ( DATA_COMPRESSION = PAGE )</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7825A571-6DEC-4B91-95FA-90FD2F5E5968}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_payment">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_payment]', 'U') IS NOT NULL         DROP TABLE [dbo].[ODS_payment];              CREATE TABLE [dbo].[ODS_payment](         [paymentID] [varchar](10) NULL,         [order_id] [varchar](50) NULL,         [payment_type_no_underscore] [nvarchar](70) NULL,         [payment_value_int] [numeric](18, 2) NULL,         [payment_installments_int] [numeric](18, 0) NULL     )ON [PRIMARY]     WITH (DATA_COMPRESSION = PAGE);</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0D1C6C80-52CB-4731-BBD8-6237A6E6210B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Create_ODS_Products">
+      <DTS:VariableValue
+        DTS:DataType="8">IF OBJECT_ID('[dbo].[ODS_Products]', 'U') IS NOT NULL     DROP TABLE [dbo].[ODS_Products]  CREATE TABLE [dbo].[ODS_Products](     [product_id] [varchar](50) NULL,     [product_category_name_english] [varchar](60) NULL,     [product_weight_g_int] [numeric](18, 0) NULL,     [product_length_cm_int] [numeric](18, 0) NULL,     [product_height_cm_int] [numeric](18, 0) NULL,     [product_width_cm_int] [numeric](18, 0) NULL,     [product_photos_qty_int] [numeric](18, 0) NULL ) ON [PRIMARY] WITH ( DATA_COMPRESSION = PAGE )</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C1E1995-8E12-4EB2-B2E4-705D80375246}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQL_Use_ODS_Database">
+      <DTS:VariableValue
+        DTS:DataType="8">USE [ODS_brazilian_store]</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Create DWH Tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D4AF2C3A-9AF5-41FA-9DCF-CFE9C435B529}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Create DWH Tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create DimCustomers"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A5934F2F-C222-4AAD-98EF-72DB8CC657C9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create DimCustomers"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DimCustomers]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[DimCustomers](&#xA;            [customerKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [customer_id] [varchar](50) NULL,&#xA;            [customer_city] [varchar](50) NULL,&#xA;            [customer_state] [varchar](3) NULL,&#xA;            [customer_zipcode] [varchar](6) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [customerKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'DimCustomers table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'DimCustomers table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create DimOrderReview"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{75BF8998-C2E5-4CE9-AB1A-CD267A5CF2D2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create DimOrderReview"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DimOrder_review]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[DimOrder_review](&#xA;            [reviewKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [review_id] [varchar](50) NULL,&#xA;            [order_id] [varchar](50) NULL,&#xA;            [review_score] [numeric](18, 0) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [reviewKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'DimOrder_review table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'DimOrder_review table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create DimOrderStatus"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BDC7D82E-682E-4CBF-9D2D-8DDECDDF8F31}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create DimOrderStatus"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DimOrderStatus]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[DimOrderStatus](&#xA;            [orderKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [order_id] [varchar](50) NULL,&#xA;            [order_status] [varchar](20) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [orderKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'DimOrderStatus table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'DimOrderStatus table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create DimPaymentMethod"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FF9218D7-5F7F-4B5C-91F9-4E7768D02C82}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create DimPaymentMethod"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DimPaymentType]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[DimPaymentType](&#xA;            [paymentKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [paymentID] [varchar](10) NULL,&#xA;            [order_id] [varchar](50) NULL,&#xA;            [payment_type_no_underscore] [nvarchar](70) NULL&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'DimPaymentType table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'DimPaymentType table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create DimProducts"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E725861A-0B3E-4C6C-A37F-313CCD227EE1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create DimProducts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DimProducts]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[DimProducts](&#xA;            [productKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [product_id] [varchar](50) NULL,&#xA;            [product_category_name_english] [varchar](60) NULL,&#xA;            [product_weight_g_int] [numeric](18, 0) NULL,&#xA;            [product_length_cm_int] [numeric](18, 0) NULL,&#xA;            [product_height_cm_int] [numeric](18, 0) NULL,&#xA;            [product_width_cm_int] [numeric](18, 0) NULL,&#xA;            [product_photos_qty_int] [numeric](18, 0) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [productKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'DimProducts table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'DimProducts table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create FactPayment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0358DADA-F977-43B2-B4FD-6572835CB190}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create FactPayment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FactPayments]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[FactPayments](&#xA;            [PaymentKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [OrderID] [varchar](50) NULL,&#xA;            [PaymentID] [varchar](10) NULL,&#xA;            [PaymentType] [nvarchar](70) NULL,&#xA;            [PurchaseDate] [datetime] NULL,&#xA;            [PaymentInstallments] [numeric](18, 0) NULL,&#xA;            [PaymentValue] [decimal](18, 2) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [PaymentKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'FactPayments table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'FactPayments table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create DWH Tables\SQL - Create FactSales"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{792A89D7-A23C-4864-A190-DE8108EB364A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create FactSales"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FactSales]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[FactSales](&#xA;            [SalesKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [OrderID] [varchar](50) NULL,&#xA;            [OrderItemID] [varchar](50) NULL,&#xA;            [CustomerID] [varchar](50) NULL,&#xA;            [ProductID] [varchar](50) NULL,&#xA;            [SellerID] [varchar](50) NULL,&#xA;            [OrderStatus] [varchar](20) NULL,&#xA;            [PurchaseDate] [datetime] NULL,&#xA;            [DeliveryDate] [datetime] NULL,&#xA;            [ShippingLimitDate] [datetime] NULL,&#xA;            [Price] [decimal](18, 2) NULL,&#xA;            [FreightValue] [decimal](18, 2) NULL,&#xA;            [TotalPrice] [decimal](19, 2) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [SalesKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'FactSales table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'FactSales table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{93192B93-434B-4645-8445-15700844E121}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create DimCustomers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create DimProducts" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5E97ECF9-3E14-4B58-85E0-CD6441D08015}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create DimProducts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create FactSales" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{967512A0-00B5-45AC-A7C0-5B9D327A98C8}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create FactSales"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create DimOrderReview" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{D0BC8FF5-48F8-444B-8105-06B63DDC9651}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create DimOrderReview"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create DimOrderStatus" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{BA9D6E58-67B1-4999-960C-669CF26BE869}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create DimOrderStatus"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create FactPayment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{5CB046A8-D34A-4109-B185-1AFB81455982}"
+          DTS:From="Package\SEQC - Create DWH Tables\SQL - Create FactPayment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\SEQC - Create DWH Tables\SQL - Create DimPaymentMethod" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Create ODS Tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F45681D6-01E3-41C4-B748-631D66FD54BC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Create ODS Tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL  -  Create ODS_Order_review"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8DFE1D52-E12B-4A8D-AA4E-E3B043C3AACF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL  -  Create ODS_Order_review"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_Order_review" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - Create ODS_Customers"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E01F3087-F1D0-4F40-B596-06D7A9E14BE4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ODS_Customers"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_Customers" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - Create ODS_Orders"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AE48AD75-F187-473E-ADEE-26413FA7DBF0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ODS_Orders"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_Orders" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - Create ODS_Order_items"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B6A18FFE-C2EB-415A-B7B1-F0BB557173A4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ODS_Order_items"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_OrderItems" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - Create ODS_payment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1E673877-3E52-4ED3-BC4E-AD2950C9BB9E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ODS_payment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_payment" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - Create ODS_Products"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4D213591-34B1-4FFD-966A-79E9F3881252}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Create ODS_Products"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_Products" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Create ODS Tables\SQL - ODS_complete_payment_information"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0BCC6B6B-57C9-4615-AE57-CC0E0096F71A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - ODS_complete_payment_information"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27E7C09B-67A3-45D0-B768-C205B06774CB}"
+              SQLTask:SqlStmtSourceType="Variable"
+              SQLTask:SqlStatementSource="User::SQL_Create_ODS_complete_payment_information" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{D3DFF40C-F3FB-4B35-8103-632C41949F9C}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL - Create ODS_Customers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL - Create ODS_Orders" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{8EE4BEB7-DB92-477D-B548-5E7A9676B4BD}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL - Create ODS_Orders"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL - Create ODS_Order_items" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{E7CE513A-1AE6-4EB0-891C-3E387B670734}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL  -  Create ODS_Order_review"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL - Create ODS_payment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{DA1E97E1-7EF9-477C-8C96-589A2D21B5AD}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL - Create ODS_Order_items"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL  -  Create ODS_Order_review" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{C5FA0659-BCCE-4040-80B6-0F399C7B3D1A}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL - Create ODS_payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL - Create ODS_Products" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{842AEF0A-552E-45CC-A922-15FEF30B85C2}"
+          DTS:From="Package\SEQC - Create ODS Tables\SQL - Create ODS_Products"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\SEQC - Create ODS Tables\SQL - ODS_complete_payment_information" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Run DWH Sequence"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{01003A6A-A9C4-4696-802D-FFC005D5ED19}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Run DWH Sequence">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH Customers"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{D10E8994-8330-406F-82C1-E3ABEB806969}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH Customers"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_Customers.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH FactPayment"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5FE9F11E-AFEB-46FE-93B3-01A8FD8551F5}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH FactPayment"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_FactPayments.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH FactSales"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{49CA9116-CCB7-433C-BFE8-3E7B11B51A34}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH FactSales"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_FactSales.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH OrderStatus"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5C5E0B13-D8F3-4948-A2D1-3C2689B14825}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH OrderStatus"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_OrderStatus.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH PaymentMethod"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{0EBF50C1-853E-4A5C-98E3-880B11E49C00}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH PaymentMethod"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_PaymentMethod.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH Products"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{DC795C72-9F3F-44F6-B2CA-2196077D7FAB}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH Products"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_Products.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run DWH Sequence\DWH Review"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{74B2F99B-C517-42CD-A687-D8D23181AB70}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DWH Review"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DWH_Reviews.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7E5102F1-428C-4008-8094-8FD9B98F4259}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH Customers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH Products" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{090F996B-6762-45B7-95A0-2C51CA3B8E2F}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH Products"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH FactSales" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{5B5A8BBD-E2C7-4CDC-BA76-D3C070BAA722}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH FactSales"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH Review" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{0666DAA7-EDCB-4C0F-88FC-986D47543826}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH Review"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH OrderStatus" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{DE1D3428-C388-4AA6-8EDD-ACF8B8E2EF74}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH OrderStatus"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH FactPayment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{BCD6427A-61B6-4917-8586-04643934DF09}"
+          DTS:From="Package\SEQC - Run DWH Sequence\DWH FactPayment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\SEQC - Run DWH Sequence\DWH PaymentMethod" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC - Run ODS Sequence"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{7768C70F-61B5-447D-8484-653D49BE34D4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC - Run ODS Sequence">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Customers"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{11522891-A90A-4499-94D6-14E0081D6016}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Customers"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Customers.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Order items"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5ADFF330-E88D-41CD-ADD4-ABE73D4BEE11}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Order items"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Order_items.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Order review"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{A99B4A66-C562-4A88-818B-C185B7492C34}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Order review"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Order_review.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Orders"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{9E4ABC5B-7C95-4256-B842-DCA2FCC85EEA}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Orders"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Orders.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Payment"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{5E5CCE80-3417-4472-96D3-22BE559631EF}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Payment"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Order_payment.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Payment Informations"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{0E069671-CF4A-44C3-9214-CAF1E4968BA7}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Payment Informations"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_complete_payment_info.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC - Run ODS Sequence\ODS Products"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{0C197F3F-9165-487A-A6CA-5C628203F57E}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ODS Products"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>ODS_Products.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F02D9786-B87F-4282-B61F-18EB8651E1C4}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Customers"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Orders" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{BCAD1CC6-2AF7-4D01-8027-02A64DFC13BF}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Orders"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Order items" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{EBBB65EF-2250-4292-8030-536A79B6B767}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Order items"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Order review" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{4AE60B07-27F0-4E5B-A892-A59771FDE713}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Order review"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Payment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{B5D1F3D0-DC9B-4F0C-99D1-2379CEB8E821}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Products" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{9DDD8572-8069-43AE-93B6-F015CC113D5B}"
+          DTS:From="Package\SEQC - Run ODS Sequence\ODS Products"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\SEQC - Run ODS Sequence\ODS Payment Informations" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Create DWH Database"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f348cc85-ee95-4ca2-a1c9-b73f730fdc90}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Create DWH Database"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{09F4DFC2-6651-4FBB-99DD-994B201313DA}"
+          SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'DWH_brazilian_store')     CREATE DATABASE [DWH_brazilian_store]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Create ODS Database"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{80DE4597-6057-4359-BA84-9312E5613BAF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Create ODS Database"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{09F4DFC2-6651-4FBB-99DD-994B201313DA}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_Create_ODS_Database" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - USE DWH DataBase"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7cf871d5-7a25-431c-a48a-1c24adfbe075}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - USE DWH DataBase"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{09F4DFC2-6651-4FBB-99DD-994B201313DA}"
+          SQLTask:SqlStatementSource="USE [DWH_brazilian_store]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - USE ODS DataBase"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3F1C3291-A750-48F1-89CB-5FA8C6FFB1CD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - USE ODS DataBase"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{09F4DFC2-6651-4FBB-99DD-994B201313DA}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::SQL_Use_ODS_Database" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0634325-C95E-47CB-8179-117F1A1FB899}"
+      DTS:From="Package\SQL - Create ODS Database"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SQL - USE ODS DataBase" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4E5125CB-E845-42AE-80A7-EF32EB560856}"
+      DTS:From="Package\SQL - USE ODS DataBase"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SEQC - Create ODS Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6E147C3E-6454-4FDD-B2C5-8A5E099E2932}"
+      DTS:From="Package\SEQC - Create ODS Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SEQC - Run ODS Sequence" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{220F6C5F-3775-48CF-BF88-A6DF95F46DC4}"
+      DTS:From="Package\SEQC - Run ODS Sequence"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL - Create DWH Database" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED91ACEB-A32C-41CE-A4A1-839DD4BB942D}"
+      DTS:From="Package\SQL - Create DWH Database"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL - USE DWH DataBase" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{7FE9814E-0E54-4EC9-AA43-B80CA4699D80}"
+      DTS:From="Package\SQL - USE DWH DataBase"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\SEQC - Create DWH Tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{5AA0FE10-B682-4659-9618-C458E6483567}"
+      DTS:From="Package\SEQC - Create DWH Tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\SEQC - Run DWH Sequence" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="128" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="219,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create DimCustomers"
+          TopLeft="8,20" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create DimOrderReview"
+          TopLeft="232,193" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create DimOrderStatus"
+          TopLeft="46,245" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create DimPaymentMethod"
+          TopLeft="90,347" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create DimProducts"
+          TopLeft="239,80" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create FactPayment"
+          TopLeft="265,292" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\SEQC - Create DWH Tables\SQL - Create FactSales"
+          TopLeft="42,141" />
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint]"
+          TopLeft="227,41">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.5,39"
+              Start="0,0"
+              End="116.5,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="112.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.5,0"
+                    Point2="116.5,0"
+                    Point3="116.5,4" />
+                  <mssgle:LineSegment
+                    End="116.5,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="239,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-99.5,40"
+              Start="0,0"
+              End="-99.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-95.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-95.5,0"
+                    Point2="-99.5,0"
+                    Point3="-99.5,4" />
+                  <mssgle:LineSegment
+                    End="-99.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 2]"
+          TopLeft="237,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="110,31"
+              Start="0,0"
+              End="110,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="106,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="106,0"
+                    Point2="110,0"
+                    Point3="110,4" />
+                  <mssgle:LineSegment
+                    End="110,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 3]"
+          TopLeft="232,214">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.5,31"
+              Start="0,0"
+              End="-73.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-69.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.5,0"
+                    Point2="-73.5,0"
+                    Point3="-73.5,4" />
+                  <mssgle:LineSegment
+                    End="-73.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 4]"
+          TopLeft="271,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99.5,26"
+              Start="0,0"
+              End="99.5,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95.5,0"
+                    Point2="99.5,0"
+                    Point3="99.5,4" />
+                  <mssgle:LineSegment
+                    End="99.5,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create DWH Tables.PrecedenceConstraints[Constraint 5]"
+          TopLeft="265,313">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-52,34"
+              Start="0,0"
+              End="-52,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-48,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48,0"
+                    Point2="-52,0"
+                    Point3="-52,4" />
+                  <mssgle:LineSegment
+                    End="-52,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="585,445"
+          Size="585,488"
+          Id="Package\SEQC - Create DWH Tables"
+          TopLeft="677.333333333333,579" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\SEQC - Create ODS Tables\SQL  -  Create ODS_Order_review"
+          TopLeft="19,96" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - Create ODS_Customers"
+          TopLeft="74.5,13.5" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - Create ODS_Order_items"
+          TopLeft="288,98" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - Create ODS_Orders"
+          TopLeft="359,20" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - Create ODS_payment"
+          TopLeft="34,204" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - Create ODS_Products"
+          TopLeft="292,201" />
+        <NodeLayout
+          Size="294,42"
+          Id="Package\SEQC - Create ODS Tables\SQL - ODS_complete_payment_information"
+          TopLeft="113,290" />
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint]"
+          TopLeft="304.5,37.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.5,0"
+              Start="0,0"
+              End="47,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="47,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 1]"
+          TopLeft="464,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-57.5,36"
+              Start="0,0"
+              End="-57.5,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="-4,18" />
+                  <mssgle:LineSegment
+                    End="-53.5,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-53.5,18"
+                    Point2="-57.5,18"
+                    Point3="-57.5,22" />
+                  <mssgle:LineSegment
+                    End="-57.5,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 2]"
+          TopLeft="103,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.5,66"
+              Start="0,0"
+              End="40.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.6538461538462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.6538461538462"
+                    Point2="0,26.6538461538462"
+                    Point3="4,26.6538461538462" />
+                  <mssgle:LineSegment
+                    End="36.5,26.6538461538462" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.5,26.6538461538462"
+                    Point2="40.5,26.6538461538462"
+                    Point3="40.5,30.6538461538462" />
+                  <mssgle:LineSegment
+                    End="40.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 3]"
+          TopLeft="406.5,140">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-223.5,-2"
+              Start="0,0"
+              End="-223.5,5.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="-4,22.5" />
+                  <mssgle:LineSegment
+                    End="-219.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-219.5,22.5"
+                    Point2="-223.5,22.5"
+                    Point3="-223.5,18.5" />
+                  <mssgle:LineSegment
+                    End="-223.5,5.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 4]"
+          TopLeft="253,223.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39,0"
+              Start="0,0"
+              End="31.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="31.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Create ODS Tables.PrecedenceConstraints[Constraint 5]"
+          TopLeft="402,243">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-142,47"
+              Start="0,0"
+              End="-142,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="-4,23.5" />
+                  <mssgle:LineSegment
+                    End="-138,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-138,23.5"
+                    Point2="-142,23.5"
+                    Point3="-142,27.5" />
+                  <mssgle:LineSegment
+                    End="-142,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="610,345"
+          Size="610,388"
+          Id="Package\SEQC - Create ODS Tables"
+          TopLeft="31.0833333333333,125.25" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH Customers"
+          TopLeft="34,12" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH FactPayment"
+          TopLeft="211,280" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH FactSales"
+          TopLeft="16,112" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH OrderStatus"
+          TopLeft="39,226" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH PaymentMethod"
+          TopLeft="42,330" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH Products"
+          TopLeft="182,68" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\SEQC - Run DWH Sequence\DWH Review"
+          TopLeft="186,165" />
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint]"
+          TopLeft="195,33">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="63,35"
+              Start="0,0"
+              End="63,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="59,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59,0"
+                    Point2="63,0"
+                    Point3="63,4" />
+                  <mssgle:LineSegment
+                    End="63,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 1]"
+          TopLeft="182,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-87.5,23"
+              Start="0,0"
+              End="-87.5,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-83.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-83.5,0"
+                    Point2="-87.5,0"
+                    Point3="-87.5,4" />
+                  <mssgle:LineSegment
+                    End="-87.5,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 2]"
+          TopLeft="173,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="85,32"
+              Start="0,0"
+              End="85,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="81,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="81,0"
+                    Point2="85,0"
+                    Point3="85,4" />
+                  <mssgle:LineSegment
+                    End="85,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 3]"
+          TopLeft="186,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.5,40"
+              Start="0,0"
+              End="-63.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-59.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59.5,0"
+                    Point2="-63.5,0"
+                    Point3="-63.5,4" />
+                  <mssgle:LineSegment
+                    End="-63.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 4]"
+          TopLeft="206,247">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.5,33"
+              Start="0,0"
+              End="91.5,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="87.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.5,0"
+                    Point2="91.5,0"
+                    Point3="91.5,4" />
+                  <mssgle:LineSegment
+                    End="91.5,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run DWH Sequence.PrecedenceConstraints[Constraint 5]"
+          TopLeft="211,301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-75,29"
+              Start="0,0"
+              End="-75,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-71,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-71,0"
+                    Point2="-75,0"
+                    Point3="-75,4" />
+                  <mssgle:LineSegment
+                    End="-75,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="412,427"
+          Size="412,470"
+          Id="Package\SEQC - Run DWH Sequence"
+          TopLeft="114.666666666666,592.666666666667" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Customers"
+          TopLeft="39,17" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Order items"
+          TopLeft="33,85" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Order review"
+          TopLeft="243,82" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Orders"
+          TopLeft="257,10" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Payment"
+          TopLeft="258,147" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Payment Informations"
+          TopLeft="115,223" />
+        <NodeLayout
+          Size="149,42"
+          Id="Package\SEQC - Run ODS Sequence\ODS Products"
+          TopLeft="36,149" />
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint]"
+          TopLeft="198,34.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,0"
+              Start="0,0"
+              End="51.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 1]"
+          TopLeft="326.5,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-212,33"
+              Start="0,0"
+              End="-212,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="-4,16.5" />
+                  <mssgle:LineSegment
+                    End="-208,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-208,16.5"
+                    Point2="-212,16.5"
+                    Point3="-212,20.5" />
+                  <mssgle:LineSegment
+                    End="-212,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 2]"
+          TopLeft="196,104.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47,0"
+              Start="0,0"
+              End="39.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="39.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 3]"
+          TopLeft="330,124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23"
+              Start="0,0"
+              End="0,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 4]"
+          TopLeft="258,169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73,0"
+              Start="0,0"
+              End="-65.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-65.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC - Run ODS Sequence.PrecedenceConstraints[Constraint 5]"
+          TopLeft="110.5,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111,32"
+              Start="0,0"
+              End="111,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="4,16" />
+                  <mssgle:LineSegment
+                    End="107,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107,16"
+                    Point2="111,16"
+                    Point3="111,20" />
+                  <mssgle:LineSegment
+                    End="111,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="453,314"
+          Size="453,357"
+          Id="Package\SEQC - Run ODS Sequence"
+          TopLeft="755.25,120.916666666667" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\SQL - Create DWH Database"
+          TopLeft="1309.08333333333,328.916666666667" />
+        <NodeLayout
+          Size="220,42"
+          Id="Package\SQL - Create ODS Database"
+          TopLeft="29,32.3333333333333" />
+        <NodeLayout
+          Size="214,44"
+          Id="Package\SQL - USE DWH DataBase"
+          TopLeft="1321.08333333333,715.25" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\SQL - USE ODS DataBase"
+          TopLeft="324.666666666667,43" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="249,53.3333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="75.6666666666667,10.6666666666667"
+              Start="0,0"
+              End="68.1666666666667,10.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="33.8333333333333,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.8333333333333,0"
+                    Point2="37.8333333333333,0"
+                    Point3="37.8333333333333,4" />
+                  <mssgle:LineSegment
+                    End="37.8333333333333,6.66666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37.8333333333333,6.66666666666667"
+                    Point2="37.8333333333333,10.6666666666667"
+                    Point3="41.8333333333333,10.6666666666667" />
+                  <mssgle:LineSegment
+                    End="68.1666666666667,10.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="430.166666666667,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-94.0833333333334,40.25"
+              Start="0,0"
+              End="-94.0833333333334,32.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.125"
+                    Point2="0,20.125"
+                    Point3="-4,20.125" />
+                  <mssgle:LineSegment
+                    End="-90.0833333333334,20.125" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-90.0833333333334,20.125"
+                    Point2="-94.0833333333334,20.125"
+                    Point3="-94.0833333333334,24.125" />
+                  <mssgle:LineSegment
+                    End="-94.0833333333334,32.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="641.083333333333,319.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114.166666666667,-19.8333333333334"
+              Start="0,0"
+              End="106.666666666667,-19.8333333333334">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.0833333333334,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.0833333333334,0"
+                    Point2="57.0833333333334,0"
+                    Point3="57.0833333333334,-4" />
+                  <mssgle:LineSegment
+                    End="57.0833333333334,-15.8333333333334" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.0833333333334,-15.8333333333334"
+                    Point2="57.0833333333334,-19.8333333333334"
+                    Point3="61.0833333333334,-19.8333333333334" />
+                  <mssgle:LineSegment
+                    End="106.666666666667,-19.8333333333334" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="1208.25,299.416666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.833333333333,50.5000000000001"
+              Start="0,0"
+              End="93.3333333333335,50.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.4166666666667,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.4166666666667,0"
+                    Point2="50.4166666666667,0"
+                    Point3="50.4166666666667,4" />
+                  <mssgle:LineSegment
+                    End="50.4166666666667,46.5000000000001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.4166666666667,46.5000000000001"
+                    Point2="50.4166666666667,50.5000000000001"
+                    Point3="54.4166666666667,50.5000000000001" />
+                  <mssgle:LineSegment
+                    End="93.3333333333335,50.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="1424.33333333333,370.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,344.333333333333"
+              Start="0,0"
+              End="0,336.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,336.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="1321.08333333333,737.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-58.7499999999998,85.7500000000003"
+              Start="0,0"
+              End="-51.2499999999998,85.7500000000003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-25.3749999999998,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.3749999999998,0"
+                    Point2="-29.3749999999998,0"
+                    Point3="-29.3749999999998,4" />
+                  <mssgle:LineSegment
+                    End="-29.3749999999998,81.7500000000003" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.3749999999998,81.7500000000003"
+                    Point2="-29.3749999999998,85.7500000000003"
+                    Point3="-33.3749999999998,85.7500000000003" />
+                  <mssgle:LineSegment
+                    End="-51.2499999999998,85.7500000000003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="677.333333333333,825.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-150.666666666667,0"
+              Start="0,0"
+              End="-143.166666666667,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-143.166666666667,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

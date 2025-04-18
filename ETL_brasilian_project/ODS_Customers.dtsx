@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="ODS_Customers"
   DTS:PackageType="5"
-  DTS:VersionBuild="34"
-  DTS:VersionGUID="{C5C3745E-BD16-4FA4-B37C-8E9E28EA88B9}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{B9D33129-6AF7-4CFC-AEC1-969CEDCD63FA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -293,6 +293,14 @@
                       cachedName="customer_state_R"
                       externalMetadataColumnId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
                       lineageId="Package\DFT - ODS Customers\DCNV - Resizing.Outputs[Data Conversion Output].Columns[customer_state_R]" />
+                    <inputColumn
+                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].Columns[customer_zipcode_R]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="customer_zipcode_R"
+                      externalMetadataColumnId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_zipcode]"
+                      lineageId="Package\DFT - ODS Customers\DCNV - Resizing.Outputs[Data Conversion Output].Columns[customer_zipcode_R]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -300,50 +308,26 @@
                       refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_id]"
                       codePage="1252"
                       dataType="str"
-                      length="255"
+                      length="50"
                       name="customer_id" />
                     <externalMetadataColumn
                       refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_city]"
                       codePage="1252"
                       dataType="str"
-                      length="255"
+                      length="50"
                       name="customer_city" />
                     <externalMetadataColumn
                       refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_state]"
                       codePage="1252"
                       dataType="str"
-                      length="255"
+                      length="3"
                       name="customer_state" />
                     <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_unique_id]"
+                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_zipcode]"
                       codePage="1252"
                       dataType="str"
-                      length="255"
-                      name="customer_unique_id" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[customer_zip_code_prefix]"
-                      codePage="1252"
-                      dataType="str"
-                      length="255"
-                      name="customer_zip_code_prefix" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[ETL_LoadDate]"
-                      dataType="dbTimeStamp"
-                      name="ETL_LoadDate" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[ETL_UpdateDate]"
-                      dataType="dbTimeStamp"
-                      name="ETL_UpdateDate" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[ETL_SourceSystem]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="ETL_SourceSystem" />
-                    <externalMetadataColumn
-                      refId="Package\DFT - ODS Customers\OLE_DST - ODS Customers.Inputs[OLE DB Destination Input].ExternalColumns[ETL_IsDeleted]"
-                      dataType="bool"
-                      name="ETL_IsDeleted" />
+                      length="6"
+                      name="customer_zipcode" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -657,6 +641,10 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="209,42"
+          Id="Package\DFT - ODS Customers\OLE_SRC - STA Customers"
+          TopLeft="50.5757551129269,16.6878787100797" />
+        <NodeLayout
           Size="210,42"
           Id="Package\DFT - ODS Customers\OLE_DST - ODS Customers"
           TopLeft="51.8636371086944,264.833331947194" />
@@ -664,10 +652,6 @@
           Size="157,42"
           Id="Package\DFT - ODS Customers\DCNV - Resizing"
           TopLeft="75.954541605079,135.499999095996" />
-        <NodeLayout
-          Size="209,42"
-          Id="Package\DFT - ODS Customers\OLE_SRC - STA Customers"
-          TopLeft="50.5757551129269,16.6878787100797" />
         <EdgeLayout
           Id="Package\DFT - ODS Customers.Paths[OLE DB Source Output]"
           TopLeft="154.665148359003,58.2878787100797">
@@ -716,7 +700,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - ODS Customers\OLE_DST - ODS Customers">
+    design-time-name="Package\DFT - ODS Customers\OLE_SRC - STA Customers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -729,7 +713,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT - ODS Customers\OLE_SRC - STA Customers">
+    design-time-name="Package\DFT - ODS Customers\OLE_DST - ODS Customers">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

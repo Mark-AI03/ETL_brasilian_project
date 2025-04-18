@@ -1,0 +1,2724 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/16/2025 10:22:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STYR0"
+  DTS:CreatorName="STYR0\karam"
+  DTS:DTSID="{89224E69-A1B7-4252-8BAF-1204B69CC39A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="14348"
+  DTS:ObjectName="DWH_FactSales"
+  DTS:PackageType="5"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{B8B3B0D6-0F24-4D3E-A377-582209A555A1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - DWH FactSales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A42AB196-9272-4CAD-942F-D257C79D3861}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - DWH FactSales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - DWH FactSales\LKP - AnyChanges"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - AnyChanges"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactSales]) [refTable]
+where [refTable].[OrderID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderItemID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SellerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderStatus" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PurchaseDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShippingLimitDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="FreightValue" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="TotalPrice" dataType="DT_NUMERIC" length="0" precision="19" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\LKP - OrderID"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - OrderID"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactSales]) [refTable]
+where [refTable].[OrderID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderItemID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SellerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderStatus" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PurchaseDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShippingLimitDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="FreightValue" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="TotalPrice" dataType="DT_NUMERIC" length="0" precision="19" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\LKP - OrderID.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="MRGJ - Left OuterJoin"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[order_item_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_item_id"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_item_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[product_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="product_id"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[seller_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="seller_id"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[seller_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[ShippingLimit_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShippingLimit_DATE"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[ShippingLimit_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[Price_int]"
+                      cachedDataType="numeric"
+                      cachedName="Price_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Price_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[Freight_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="Freight_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Freight_value_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="19"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[TotalPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[order_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="order_status"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_status]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Purchase_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[Delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Delivery_DATE"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Delivery_DATE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_item_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_item_id]"
+                      name="order_item_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[order_item_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[customer_id]"
+                      name="customer_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[customer_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[product_id]"
+                      name="product_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[product_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[seller_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[seller_id]"
+                      name="seller_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[seller_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_status]"
+                      name="order_status">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[order_status]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[Purchase_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input].Columns[Delivery_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[ShippingLimit_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[ShippingLimit_DATE]"
+                      name="ShippingLimit_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[ShippingLimit_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Price_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Price_int]"
+                      name="Price_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[Price_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Freight_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Freight_value_int]"
+                      name="Freight_value_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[Freight_value_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input].Columns[TotalPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[FactSales]
+   SET [OrderItemID] = ?
+      ,[CustomerID] = ?
+      ,[ProductID] = ?
+      ,[SellerID] = ?
+      ,[OrderStatus] = ?
+      ,[PurchaseDate] = ?
+      ,[DeliveryDate] = ?
+      ,[ShippingLimitDate] = ?
+      ,[Price] = ?
+      ,[FreightValue] = ?
+      ,[TotalPrice] = ?
+ WHERE [OrderID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_item_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_item_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_item_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[product_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[seller_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="seller_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[seller_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[order_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="order_status"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_status]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Purchase_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[Delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Delivery_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Delivery_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[ShippingLimit_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShippingLimit_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[ShippingLimit_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[Price_int]"
+                      cachedDataType="numeric"
+                      cachedName="Price_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Price_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[Freight_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="Freight_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Freight_value_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="19"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[TotalPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="dbTimeStamp"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="dbTimeStamp"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="dbTimeStamp"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="numeric"
+                      name="Param_8"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="numeric"
+                      name="Param_9"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="numeric"
+                      name="Param_10"
+                      precision="19"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\OLE_DST FactSales"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST FactSales"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="19"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[TotalPrice]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[order_item_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_item_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderItemID]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_item_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[seller_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="seller_id"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[SellerID]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[seller_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[order_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="order_status"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderStatus]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[order_status]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Purchase_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[Delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Delivery_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryDate]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Delivery_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[ShippingLimit_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShippingLimit_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[ShippingLimitDate]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[ShippingLimit_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[Price_int]"
+                      cachedDataType="numeric"
+                      cachedName="Price_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Price_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].Columns[Freight_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="Freight_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[FreightValue]"
+                      lineageId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output].Columns[Freight_value_int]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[SalesKey]"
+                      dataType="i4"
+                      name="SalesKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderItemID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OrderItemID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[SellerID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SellerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[OrderStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="OrderStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      dataType="dbTimeStamp"
+                      name="PurchaseDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[DeliveryDate]"
+                      dataType="dbTimeStamp"
+                      name="DeliveryDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[ShippingLimitDate]"
+                      dataType="dbTimeStamp"
+                      name="ShippingLimitDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="numeric"
+                      name="Price"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[FreightValue]"
+                      dataType="numeric"
+                      name="FreightValue"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      dataType="numeric"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_DST FactSales.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_DST FactSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_DST FactSales.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC ODS Orders"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ODS_Orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    oi.order_item_id,
+    oi.order_id,
+    o.customer_id,
+    oi.product_id,
+    oi.seller_id,
+    o.order_status,
+    o.Purchase_DATE,
+    o.Delivery_DATE,
+    oi.ShippingLimit_DATE,
+    oi.Price_int AS Price,
+    oi.Freight_value_int AS FreightValue,
+    oi.TotalPrice
+FROM 
+    [dbo].[ODS_Order_items] oi
+LEFT JOIN 
+    [dbo].[ODS_Orders] o ON oi.order_id = o.order_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Connections[OleDbConnection]"
+                  connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      length="20"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]"
+                      name="order_status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="order_status" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Purchase_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Delivery_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Estimated_delivery_DATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      name="order_status" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC ODS Order_Items"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ODS_Order_items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Connections[OleDbConnection]"
+                  connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_item_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[order_item_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_item_id]"
+                      name="order_item_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[seller_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[seller_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[seller_id]"
+                      name="seller_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Price_int]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[Price_int]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Price_int]"
+                      name="Price_int"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Freight_value_int]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[Freight_value_int]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Freight_value_int]"
+                      name="Freight_value_int"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[ShippingLimit_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[ShippingLimit_DATE]"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[ShippingLimit_DATE]"
+                      name="ShippingLimit_DATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[order_item_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="order_item_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[seller_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="seller_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[Price_int]"
+                      dataType="numeric"
+                      name="Price_int"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[Freight_value_int]"
+                      dataType="numeric"
+                      name="Freight_value_int"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[TotalPrice]"
+                      dataType="numeric"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].ExternalColumns[ShippingLimit_DATE]"
+                      dataType="dbTimeStamp"
+                      name="ShippingLimit_DATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[order_item_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[order_item_id]"
+                      name="order_item_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[seller_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[seller_id]"
+                      name="seller_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[Price_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[Price_int]"
+                      name="Price_int"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[Freight_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[Freight_value_int]"
+                      name="Freight_value_int"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ShippingLimit_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ShippingLimit_DATE]"
+                      name="ShippingLimit_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\SRT - Sort Orders"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SRT - Sort Orders"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[order_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="order_status"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[Delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Delivery_DATE"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input].Columns[Estimated_delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Estimated_delivery_DATE"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[customer_id]"
+                      name="customer_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[customer_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[order_status]"
+                      name="order_status">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[order_status]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SRT - Sort Order_Items"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[order_item_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_item_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_item_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[product_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="product_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[product_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[seller_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="seller_id"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[seller_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[Price_int]"
+                      cachedDataType="numeric"
+                      cachedName="Price_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Price_int]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[Freight_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="Freight_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Freight_value_int]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[TotalPrice]"
+                      cachedDataType="numeric"
+                      cachedName="TotalPrice"
+                      cachedPrecision="19"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[TotalPrice]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input].Columns[ShippingLimit_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ShippingLimit_DATE"
+                      lineageId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[ShippingLimit_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_item_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_item_id]"
+                      name="order_item_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_item_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[product_id]"
+                      name="product_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[product_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[seller_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[seller_id]"
+                      name="seller_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[seller_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Price_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Price_int]"
+                      name="Price_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Price_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Freight_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[Freight_value_int]"
+                      name="Freight_value_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[Freight_value_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[TotalPrice]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      precision="19"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[TotalPrice]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[ShippingLimit_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output].Columns[ShippingLimit_DATE]"
+                      name="ShippingLimit_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output].Columns[ShippingLimit_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Lookup Match Output]"
+              endId="Package\DFT - DWH FactSales\LKP - AnyChanges.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Lookup No Match Output]"
+              endId="Package\DFT - DWH FactSales\OLE_DST FactSales.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - DWH FactSales\LKP - OrderID.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Lookup No Match Output1]"
+              endId="Package\DFT - DWH FactSales\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - DWH FactSales\LKP - AnyChanges.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Merge Join Output]"
+              endId="Package\DFT - DWH FactSales\LKP - OrderID.Inputs[Lookup Input]"
+              name="Merge Join Output"
+              startId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[OLE DB Source Output]"
+              endId="Package\DFT - DWH FactSales\SRT - Sort Orders.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - DWH FactSales\OLE_SRC ODS Orders.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[OLE DB Source Output1]"
+              endId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Sort Output]"
+              endId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DFT - DWH FactSales\SRT - Sort Order_Items.Outputs[Sort Output]" />
+            <path
+              refId="Package\DFT - DWH FactSales.Paths[Sort Output1]"
+              endId="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DFT - DWH FactSales\SRT - Sort Orders.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="188,42"
+          Id="Package\DFT - DWH FactSales"
+          TopLeft="160,182" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - DWH FactSales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\DFT - DWH FactSales\SRT - Sort Order_Items"
+          TopLeft="431,145" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\DFT - DWH FactSales\SRT - Sort Orders"
+          TopLeft="171,164" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\DFT - DWH FactSales\MRGJ - Left OuterJoin"
+          TopLeft="337,268" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\DFT - DWH FactSales\OLE_SRC ODS Orders"
+          TopLeft="119,72" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items"
+          TopLeft="395,65" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\DFT - DWH FactSales\OLE DB Command"
+          TopLeft="949,347" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DFT - DWH FactSales\LKP - OrderID"
+          TopLeft="336,338" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DFT - DWH FactSales\OLE_DST FactSales"
+          TopLeft="331,446" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DFT - DWH FactSales\LKP - AnyChanges"
+          TopLeft="618,335" />
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Sort Output]"
+          TopLeft="528.5,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.8333333333334,81"
+              Start="0,0"
+              End="-66.8333333333334,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.1920251836306" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.1920251836306"
+                    Point2="0,48.1920251836306"
+                    Point3="-4,48.1920251836306" />
+                  <mssgle:LineSegment
+                    End="-62.8333333333334,48.1920251836306" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.8333333333334,48.1920251836306"
+                    Point2="-66.8333333333334,48.1920251836306"
+                    Point3="-66.8333333333334,52.1920251836306" />
+                  <mssgle:LineSegment
+                    End="-66.8333333333334,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[OLE DB Source Output1]"
+          TopLeft="505.5,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23,38"
+              Start="0,0"
+              End="23,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="19,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19,19"
+                    Point2="23,19"
+                    Point3="23,23" />
+                  <mssgle:LineSegment
+                    End="23,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[OLE DB Source Output]"
+          TopLeft="216,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="38.5,50"
+              Start="0,0"
+              End="38.5,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="34.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.5,25"
+                    Point2="38.5,25"
+                    Point3="38.5,29" />
+                  <mssgle:LineSegment
+                    End="38.5,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Merge Join Output]"
+          TopLeft="431.5,310">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.5,28"
+              Start="0,0"
+              End="-21.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="-4,14" />
+                  <mssgle:LineSegment
+                    End="-17.5,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.5,14"
+                    Point2="-21.5,14"
+                    Point3="-21.5,18" />
+                  <mssgle:LineSegment
+                    End="-21.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Lookup No Match Output1]"
+          TopLeft="790,356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="159,12"
+              Start="0,0"
+              End="151.5,12">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="75.5,0"
+                    Point2="79.5,0"
+                    Point3="79.5,4" />
+                  <mssgle:LineSegment
+                    End="79.5,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="79.5,8"
+                    Point2="79.5,12"
+                    Point3="83.5,12" />
+                  <mssgle:LineSegment
+                    End="151.5,12" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.69361328125,-17.609375,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Lookup No Match Output]"
+          TopLeft="410,380">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5,66"
+              Start="0,0"
+              End="11.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="4,33" />
+                  <mssgle:LineSegment
+                    End="7.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5,33"
+                    Point2="11.5,33"
+                    Point3="11.5,37" />
+                  <mssgle:LineSegment
+                    End="11.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.05638671875,38,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Lookup Match Output]"
+          TopLeft="484,357.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="134,0"
+              Start="0,0"
+              End="126.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="126.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.05861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH FactSales.Paths[Sort Output1]"
+          TopLeft="254.5,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.833333333333,62"
+              Start="0,0"
+              End="146.833333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.887722980063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.887722980063"
+                    Point2="0,36.887722980063"
+                    Point3="4,36.887722980063" />
+                  <mssgle:LineSegment
+                    End="142.833333333333,36.887722980063" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.833333333333,36.887722980063"
+                    Point2="146.833333333333,36.887722980063"
+                    Point3="146.833333333333,40.887722980063" />
+                  <mssgle:LineSegment
+                    End="146.833333333333,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH FactSales\OLE_SRC ODS Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH FactSales\OLE_SRC ODS Order_Items">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH FactSales\LKP - OrderID">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactSales]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH FactSales\OLE_DST FactSales">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH FactSales\LKP - AnyChanges">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactSales]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2468 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/18/2025 4:46:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STYR0"
+  DTS:CreatorName="STYR0\karam"
+  DTS:DTSID="{4524368D-92E8-479E-9895-7FD859376B86}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="14348"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{FE1827D8-B55A-4AE2-8228-A1C8593179A0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - DWH Fact Payments"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2A41DE6D-AB8B-4EAA-B571-6523F5225603}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - DWH Fact Payments"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="CMD - Update FactPayment"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[FactPayments]
+   SET [OrderID] = ?
+      ,[PaymentType] = ?
+      ,[PurchaseDate] = ?
+      ,[PaymentInstallments] = ?
+      ,[PaymentValue] = ?
+ WHERE [PaymentID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[payment_type_no_underscore]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="payment_type_no_underscore"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[payment_installments_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_installments_int"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[payment_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].Columns[paymentID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="paymentID"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="70"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="dbTimeStamp"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="numeric"
+                      name="Param_3"
+                      precision="18">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - AnyChanges"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactPayments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactPayments]) [refTable]
+where [refTable].[OrderID] = ? and [refTable].[PaymentType] = ? and [refTable].[PurchaseDate] = ? and [refTable].[PaymentInstallments] = ? and [refTable].[PaymentValue] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PaymentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PaymentID" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PaymentType" dataType="DT_WSTR" length="70" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PurchaseDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentInstallments" dataType="DT_NUMERIC" length="0" precision="18" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentValue" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]};#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]};#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]};#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]};#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input].Columns[payment_type_no_underscore]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="payment_type_no_underscore"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PaymentType</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PurchaseDate</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input].Columns[payment_installments_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_installments_int"
+                      cachedPrecision="18"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PaymentInstallments</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input].Columns[payment_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PaymentValue</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\LKP - OrderID"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - OrderID"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactSales]) [refTable]
+where [refTable].[OrderID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SalesKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderItemID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CustomerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ProductID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="SellerID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="OrderStatus" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PurchaseDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeliveryDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShippingLimitDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="FreightValue" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="TotalPrice" dataType="DT_NUMERIC" length="0" precision="19" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\LKP - PaymentID"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - PaymentID"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactPayments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactPayments]) [refTable]
+where [refTable].[PaymentID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PaymentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PaymentID" dataType="DT_STR" length="10" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="PaymentType" dataType="DT_WSTR" length="70" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PurchaseDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentInstallments" dataType="DT_NUMERIC" length="0" precision="18" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PaymentValue" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input].Columns[paymentID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="paymentID"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PaymentID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Left Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Left Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Purchase_DATE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[paymentID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="paymentID"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[paymentID]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_type_no_underscore]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="payment_type_no_underscore"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_type_no_underscore]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_installments_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_installments_int"
+                      cachedPrecision="18"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_installments_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_value_int]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]"
+                      name="paymentID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[paymentID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]"
+                      dataType="wstr"
+                      length="70"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]"
+                      name="payment_type_no_underscore">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_type_no_underscore]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Left Input].Columns[Purchase_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]"
+                      name="payment_installments_int"
+                      precision="18">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_installments_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]"
+                      name="payment_value_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input].Columns[payment_value_int]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST FactPayments"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactPayments]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Connections[OleDbConnection]"
+                  connectionManagerID="{260779B2-57F2-4833-A95F-1D8F04714708}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DWH_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[paymentID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="paymentID"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentID]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[paymentID]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[order_id]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[payment_type_no_underscore]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="payment_type_no_underscore"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_type_no_underscore]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[Purchase_DATE]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[payment_installments_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_installments_int"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentInstallments]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_installments_int]" />
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].Columns[payment_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentValue]"
+                      lineageId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output].Columns[payment_value_int]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentKey]"
+                      dataType="i4"
+                      name="PaymentKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[OrderID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PaymentID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentType]"
+                      dataType="wstr"
+                      length="70"
+                      name="PaymentType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      dataType="dbTimeStamp"
+                      name="PurchaseDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentInstallments]"
+                      dataType="numeric"
+                      name="PaymentInstallments"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input].ExternalColumns[PaymentValue]"
+                      dataType="numeric"
+                      name="PaymentValue"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC ODS - Orders"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ODS_Orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Connections[OleDbConnection]"
+                  connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      length="20"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_status]"
+                      name="order_status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="order_status" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Purchase_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Delivery_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].ExternalColumns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      name="Estimated_delivery_DATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[order_status]"
+                      name="order_status" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC ODS Payment"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ODS_payment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Connections[OleDbConnection]"
+                  connectionManagerID="{27E7C09B-67A3-45D0-B768-C205B06774CB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.ODS_brazilian_store]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[paymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[paymentID]"
+                      length="10"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[paymentID]"
+                      name="paymentID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[order_id]"
+                      name="order_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_type_no_underscore]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_type_no_underscore]"
+                      length="70"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_type_no_underscore]"
+                      name="payment_type_no_underscore"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_value_int]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_value_int]"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_value_int]"
+                      name="payment_value_int"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_installments_int]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_installments_int]"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_installments_int]"
+                      name="payment_installments_int"
+                      precision="18"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[paymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="paymentID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="order_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_type_no_underscore]"
+                      dataType="wstr"
+                      length="70"
+                      name="payment_type_no_underscore" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_value_int]"
+                      dataType="numeric"
+                      name="payment_value_int"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].ExternalColumns[payment_installments_int]"
+                      dataType="numeric"
+                      name="payment_installments_int"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[paymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[paymentID]"
+                      name="paymentID" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                      name="order_id" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_type_no_underscore]"
+                      dataType="wstr"
+                      length="70"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_type_no_underscore]"
+                      name="payment_type_no_underscore" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_value_int]"
+                      name="payment_value_int"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_installments_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[payment_installments_int]"
+                      name="payment_installments_int"
+                      precision="18" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\SRT - Orders"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SRT - Orders"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[customer_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[order_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="order_status"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_status]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[Purchase_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Purchase_DATE"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[Delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Delivery_DATE"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input].Columns[Estimated_delivery_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Estimated_delivery_DATE"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[customer_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[customer_id]"
+                      name="customer_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[customer_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[order_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[order_status]"
+                      name="order_status">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[order_status]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Purchase_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Purchase_DATE]"
+                      name="Purchase_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Purchase_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Delivery_DATE]"
+                      name="Delivery_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Delivery_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Estimated_delivery_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output].Columns[Estimated_delivery_DATE]"
+                      name="Estimated_delivery_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output].Columns[Estimated_delivery_DATE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - DWH Fact Payments\SRT - Payments"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="SRT - Payments"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input].Columns[paymentID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="paymentID"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[paymentID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input].Columns[order_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="order_id"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[order_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input].Columns[payment_type_no_underscore]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="payment_type_no_underscore"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_type_no_underscore]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input].Columns[payment_value_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_value_int"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_value_int]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input].Columns[payment_installments_int]"
+                      cachedDataType="numeric"
+                      cachedName="payment_installments_int"
+                      cachedPrecision="18"
+                      lineageId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_installments_int]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[paymentID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[paymentID]"
+                      name="paymentID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[paymentID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[order_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[order_id]"
+                      name="order_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[order_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_type_no_underscore]"
+                      dataType="wstr"
+                      length="70"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_type_no_underscore]"
+                      name="payment_type_no_underscore">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_type_no_underscore]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_value_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_value_int]"
+                      name="payment_value_int"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_value_int]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_installments_int]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output].Columns[payment_installments_int]"
+                      name="payment_installments_int"
+                      precision="18">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output].Columns[payment_installments_int]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Lookup Match Output]"
+              endId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Lookup Match Output1]"
+              endId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT - DWH Fact Payments\LKP - OrderID.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Lookup No Match Output]"
+              endId="Package\DFT - DWH Fact Payments\OLE_DST FactPayments.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - DWH Fact Payments\LKP - PaymentID.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Lookup No Match Output1]"
+              endId="Package\DFT - DWH Fact Payments\CMD - Update FactPayment.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT - DWH Fact Payments\LKP - AnyChanges.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Merge Join Output]"
+              endId="Package\DFT - DWH Fact Payments\LKP - OrderID.Inputs[Lookup Input]"
+              name="Merge Join Output"
+              startId="Package\DFT - DWH Fact Payments\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[OLE DB Source Output]"
+              endId="Package\DFT - DWH Fact Payments\SRT - Orders.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[OLE DB Source Output1]"
+              endId="Package\DFT - DWH Fact Payments\SRT - Payments.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Sort Output]"
+              endId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DFT - DWH Fact Payments\SRT - Orders.Outputs[Sort Output]" />
+            <path
+              refId="Package\DFT - DWH Fact Payments.Paths[Sort Output1]"
+              endId="Package\DFT - DWH Fact Payments\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DFT - DWH Fact Payments\SRT - Payments.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DFT - DWH Fact Payments"
+          TopLeft="186,136" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - DWH Fact Payments">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="202,42"
+          Id="Package\DFT - DWH Fact Payments\OLE_DST FactPayments"
+          TopLeft="270,524" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders"
+          TopLeft="107,120" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment"
+          TopLeft="435,99" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\DFT - DWH Fact Payments\SRT - Payments"
+          TopLeft="449,193" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\DFT - DWH Fact Payments\SRT - Orders"
+          TopLeft="139,195" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT - DWH Fact Payments\Merge Join"
+          TopLeft="312,289" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Sort Output1]"
+          TopLeft="528.5,235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-129.166666666667,54"
+              Start="0,0"
+              End="-129.166666666667,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0148588410104" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0148588410104"
+                    Point2="0,32.0148588410104"
+                    Point3="-4,32.0148588410104" />
+                  <mssgle:LineSegment
+                    End="-125.166666666667,32.0148588410104" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-125.166666666667,32.0148588410104"
+                    Point2="-129.166666666667,32.0148588410104"
+                    Point3="-129.166666666667,36.0148588410104" />
+                  <mssgle:LineSegment
+                    End="-129.166666666667,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Sort Output]"
+          TopLeft="211,237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="146.666666666667,52"
+              Start="0,0"
+              End="146.666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8291233283804" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8291233283804"
+                    Point2="0,30.8291233283804"
+                    Point3="4,30.8291233283804" />
+                  <mssgle:LineSegment
+                    End="142.666666666667,30.8291233283804" />
+                  <mssgle:CubicBezierSegment
+                    Point1="142.666666666667,30.8291233283804"
+                    Point2="146.666666666667,30.8291233283804"
+                    Point3="146.666666666667,34.8291233283804" />
+                  <mssgle:LineSegment
+                    End="146.666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[OLE DB Source Output1]"
+          TopLeft="536.5,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,52"
+              Start="0,0"
+              End="-8,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-4,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,26"
+                    Point2="-8,26"
+                    Point3="-8,30" />
+                  <mssgle:LineSegment
+                    End="-8,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[OLE DB Source Output]"
+          TopLeft="209,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164,42"
+          Id="Package\DFT - DWH Fact Payments\LKP - PaymentID"
+          TopLeft="301,417" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Lookup No Match Output]"
+          TopLeft="383,459">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12,65"
+              Start="0,0"
+              End="-12,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="-4,32.5" />
+                  <mssgle:LineSegment
+                    End="-8,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8,32.5"
+                    Point2="-12,32.5"
+                    Point3="-12,36.5" />
+                  <mssgle:LineSegment
+                    End="-12,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-61.80638671875,37.5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\DFT - DWH Fact Payments\LKP - AnyChanges"
+          TopLeft="615,423" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Lookup Match Output]"
+          TopLeft="465,441">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150,0"
+              Start="0,0"
+              End="142.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="142.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="23.05861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DFT - DWH Fact Payments\LKP - OrderID"
+          TopLeft="301,350" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Merge Join Output]"
+          TopLeft="445,310">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="4,61"
+              Start="0,0"
+              End="11.5,61">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,0"
+                    Point2="26.5,0"
+                    Point3="26.5,4" />
+                  <mssgle:LineSegment
+                    End="26.5,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.5,57"
+                    Point2="26.5,61"
+                    Point3="22.5,61" />
+                  <mssgle:LineSegment
+                    End="11.5,61" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Lookup Match Output1]"
+          TopLeft="375,392">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,25"
+              Start="0,0"
+              End="8,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.5"
+                    Point2="0,12.5"
+                    Point3="4,12.5" />
+                  <mssgle:LineSegment
+                    End="4,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,12.5"
+                    Point2="8,12.5"
+                    Point3="8,16.5" />
+                  <mssgle:LineSegment
+                    End="8,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.19138671875,17.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DFT - DWH Fact Payments\CMD - Update FactPayment"
+          TopLeft="906,411" />
+        <EdgeLayout
+          Id="Package\DFT - DWH Fact Payments.Paths[Lookup No Match Output1]"
+          TopLeft="787,444">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119,-12"
+              Start="0,0"
+              End="111.5,-12">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="55.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.5,0"
+                    Point2="59.5,0"
+                    Point3="59.5,-4" />
+                  <mssgle:LineSegment
+                    End="59.5,-8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.5,-8"
+                    Point2="59.5,-12"
+                    Point3="63.5,-12" />
+                  <mssgle:LineSegment
+                    End="111.5,-12" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.69361328125,1,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\OLE_DST FactPayments">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\OLE_SRC ODS - Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\OLE_SRC ODS Payment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\LKP - PaymentID">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactPayments]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\LKP - AnyChanges">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactPayments]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - DWH Fact Payments\LKP - OrderID">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactSales]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
