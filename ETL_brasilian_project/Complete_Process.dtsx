@@ -11,8 +11,8 @@
   DTS:LocaleID="14348"
   DTS:ObjectName="Complete_Process"
   DTS:PackageType="5"
-  DTS:VersionBuild="65"
-  DTS:VersionGUID="{FD0EF5E8-53FE-4149-AFD7-C1396A51EAD1}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{FB0BD519-50CA-430C-BB36-BAB2351879E6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -234,7 +234,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{260779B2-57F2-4833-A95F-1D8F04714708}"
-              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FactSales]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[FactSales](&#xA;            [SalesKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [OrderID] [varchar](50) NULL,&#xA;            [OrderItemID] [varchar](50) NULL,&#xA;            [CustomerID] [varchar](50) NULL,&#xA;            [ProductID] [varchar](50) NULL,&#xA;            [SellerID] [varchar](50) NULL,&#xA;            [OrderStatus] [varchar](20) NULL,&#xA;            [PurchaseDate] [datetime] NULL,&#xA;            [DeliveryDate] [datetime] NULL,&#xA;            [ShippingLimitDate] [datetime] NULL,&#xA;            [Price] [decimal](18, 2) NULL,&#xA;            [FreightValue] [decimal](18, 2) NULL,&#xA;            [TotalPrice] [decimal](19, 2) NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [SalesKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'FactSales table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'FactSales table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="BEGIN TRY&#xA;    IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FactSales]') AND type in (N'U'))&#xA;    BEGIN&#xA;        CREATE TABLE [dbo].[FactSales](&#xA;            [SalesKey] [int] IDENTITY(1,1) NOT NULL,&#xA;            [OrderID] [varchar](50) NULL,&#xA;            [OrderItemID] [varchar](50) NULL,&#xA;            [CustomerID] [varchar](50) NULL,&#xA;            [ProductID] [varchar](50) NULL,&#xA;            [SellerID] [varchar](50) NULL,&#xA;            [OrderStatus] [varchar](20) NULL,&#xA;            [PurchaseDate] [datetime] NULL,&#xA;            [DeliveryDate] [datetime] NULL,&#xA;            [ShippingLimitDate] [datetime] NULL,&#xA;            [Price] [decimal](18, 2) NULL,&#xA;            [FreightValue] [decimal](18, 2) NULL,&#xA;            [TotalPrice] [decimal](19, 2) NULL,&#xA;            [IsLateDelivery] [bit] NULL,&#xA;        PRIMARY KEY CLUSTERED &#xA;        (&#xA;            [SalesKey] ASC&#xA;        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]&#xA;        ) ON [PRIMARY]&#xA;        &#xA;        SELECT 'FactSales table created successfully' AS Status;&#xA;    END&#xA;    ELSE&#xA;    BEGIN&#xA;        SELECT 'FactSales table already exists' AS Status;&#xA;    END&#xA;END TRY&#xA;BEGIN CATCH&#xA;    SELECT ERROR_MESSAGE() AS ErrorMessage;&#xA;END CATCH" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -2132,14 +2132,6 @@
           Id="Package\SEQC - Run ODS Sequence"
           TopLeft="2452.12492414378,136.232456147864" />
         <NodeLayout
-          Size="184,42"
-          Id="Package\SEQC - Run STA Sequence\EPT- STA Customers"
-          TopLeft="26.5824017840257,28.3070159136479" />
-        <NodeLayout
-          Size="168,42"
-          Id="Package\SEQC - Run STA Sequence\EPT - STA Orders"
-          TopLeft="314.040765823063,16.4473683008527" />
-        <NodeLayout
           Size="193,42"
           Id="Package\SEQC - Run STA Sequence\EPT - STA Geolocation"
           TopLeft="286.915774456423,325.552628130712" />
@@ -2148,25 +2140,33 @@
           Id="Package\SEQC - Run STA Sequence\EPT - STA Order items"
           TopLeft="316.040768505272,91.6578946692297" />
         <NodeLayout
-          Size="178,42"
-          Id="Package\SEQC - Run STA Sequence\EPT - STA Products"
-          TopLeft="17.7907830897833,103.710526225639" />
+          Size="207,42"
+          Id="Package\SEQC - Run STA Sequence\EPT - STA Order payment"
+          TopLeft="30.2907852131985,182.868420752132" />
         <NodeLayout
           Size="201,42"
           Id="Package\SEQC - Run STA Sequence\EPT - STA Order Review"
           TopLeft="315.290771131602,159.44736844359" />
         <NodeLayout
-          Size="207,42"
-          Id="Package\SEQC - Run STA Sequence\EPT - STA Order payment"
-          TopLeft="30.2907852131985,182.868420752132" />
+          Size="168,42"
+          Id="Package\SEQC - Run STA Sequence\EPT - STA Orders"
+          TopLeft="314.040765823063,16.4473683008527" />
         <NodeLayout
           Size="226,42"
           Id="Package\SEQC - Run STA Sequence\EPT - STA Product translation"
           TopLeft="291.540775993106,237.65789466923" />
         <NodeLayout
+          Size="178,42"
+          Id="Package\SEQC - Run STA Sequence\EPT - STA Products"
+          TopLeft="17.7907830897833,103.710526225639" />
+        <NodeLayout
           Size="168,42"
           Id="Package\SEQC - Run STA Sequence\EPT - STA Sellers"
           TopLeft="43.415782391291,277.499999571788" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\SEQC - Run STA Sequence\EPT- STA Customers"
+          TopLeft="26.5824017840257,28.3070159136479" />
         <EdgeLayout
           Id="Package\SEQC - Run STA Sequence.PrecedenceConstraints[Constraint]"
           TopLeft="210.582401784026,49.3070159136479">
