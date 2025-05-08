@@ -47,6 +47,24 @@ The dataset comes from the [Olist Brazilian E-Commerce Public Dataset on Kaggle]
 
 ---
 
+## 🏗️ Data Warehouse Design
+
+The final output of the ETL pipeline is a fully functional **data warehouse**, optimized for analytical workloads.
+
+### 🌟 Star Schema Components
+
+| Table Type      | Tables Included |
+|------------------|----------------|
+| **Fact Tables**  | `fact_orders`, `fact_payments`, `fact_reviews` |
+| **Dimension Tables** | `dim_customers`, `dim_products`, `dim_sellers`, `dim_geolocation` |
+
+### 🔧 Features of the Data Warehouse
+- Designed using **star schema modeling** to support slice-and-dice operations.
+- Built to handle high-volume queries like sales reporting, customer analysis, and delivery performance.
+- Easy integration with BI tools like **Power BI**, **Tableau**, or **Metabase**.
+- Designed with scalability and modularity in mind.
+
+
 ## 🧰 Tools & Technologies Used
 
 | Tool           | Purpose                                      |
