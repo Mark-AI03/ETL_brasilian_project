@@ -1,66 +1,114 @@
 # 🛒 Brazilian E-Commerce ETL Pipeline Project
 
-Welcome to the **Brazilian E-Commerce ETL Pipeline**, a full-stack data engineering project where we ingest, transform, and load real-world e-commerce data into a structured MySQL database. This pipeline was developed using **SSIS (SQL Server Integration Services)**, **MySQL**, and **SSMS (SQL Server Management Studio)**.
+Welcome to the **Brazilian E-Commerce ETL Pipeline**, a full-stack data engineering project where we ingest, transform, and load real-world e-commerce data into a structured **MySQL** database. This pipeline was developed using:
 
-The project aims to simulate a real-world ETL process typically used in data-driven companies for analytics and business intelligence purposes.
+- **SSIS (SQL Server Integration Services)**
+- **SSMS (SQL Server Management Studio)**
+- **MySQL**
+
+This project simulates a real-world ETL process typically used in data-driven companies to prepare data for business intelligence, analytics, and reporting.
 
 ---
 
-## 📦 About the Dataset
+## 📊 Project Workflow
 
-The data used comes from the [Olist Brazilian E-Commerce Public Dataset on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), which contains information about customer orders from a multi-category marketplace in Brazil.
+### 📦 About the Dataset
 
-**Key files include:**
-- `orders.csv` – Purchase lifecycle data
-- `order_items.csv` – Items per order
-- `products.csv` – Product details
-- `customers.csv` – Customer location data
-- `sellers.csv` – Marketplace seller data
-- `order_payments.csv` – Payment details per order
-- `order_reviews.csv` – Customer reviews and ratings
-- `product_category_name_translation.csv` – Translations of product category names
+The dataset comes from the [Olist Brazilian E-Commerce Public Dataset on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), featuring detailed transaction data from a Brazilian marketplace.
+
+**Included files:**
+- `orders.csv` – Order lifecycle
+- `order_items.csv` – Items included in orders
+- `products.csv` – Product metadata
+- `customers.csv` – Customer demographics
+- `sellers.csv` – Seller data
+- `order_payments.csv` – Payment details
+- `order_reviews.csv` – Customer reviews
 - `geolocation.csv` – Zip code-level location data
+- `product_category_name_translation.csv` – English translations
+
+---
+
+### 🔍 1. Extract
+- Pulled raw `.csv` files from Kaggle.
+- Connected Flat File Sources in SSIS to each dataset.
+- Loaded data into **staging tables** in SQL Server (SSMS).
+
+### 🧹 2. Transform
+- Handled missing/invalid values.
+- Standardized column names and formats.
+- Applied data type conversions and relationships.
+- Performed joins across tables to prepare dimensional modeling.
+
+### 📥 3. Load
+- Loaded clean and structured data into a **MySQL** database.
+- Created **normalized schema** with primary/foreign key constraints.
+- Ensured optimized indexing and query readiness.
 
 ---
 
 ## 🧰 Tools & Technologies Used
 
-| Tool / Tech | Description |
-|-------------|-------------|
-| **SSIS** | Microsoft’s data integration tool for ETL workflows |
-| **SSMS** | SQL Server Management Studio – used for writing and testing SQL |
-| **MySQL** | Open-source RDBMS – final storage and schema hosting |
-| **Kaggle** | Source of the e-commerce dataset |
-| **Excel / CSV Tools** | Used to preview and prepare CSV data before ingestion |
+| Tool           | Purpose                                      |
+|----------------|----------------------------------------------|
+| **SSIS**       | Designed ETL workflows with data flow logic  |
+| **SSMS**       | SQL Server staging, data profiling           |
+| **MySQL**      | Final structured database                    |
+| **Kaggle**     | Source of the raw CSV dataset                |
+| **CSV Tools**  | Pre-processing and quick exploration         |
+
+---
+
+## 🔄 Detailed ETL Steps
+
+Here’s a breakdown of each step followed during the ETL process:
+
+### 🔸 Extract Phase
+1. **Download Data**: Obtained the Olist dataset from Kaggle in CSV format.
+2. **Data Validation**: Opened files to check delimiter issues, header formats, and encoding.
+3. **Import into SSIS**: Set up Flat File Connections in SSIS for each CSV.
+4. **Staging Load**: Loaded raw files into staging tables in SQL Server via SSIS.
+
+### 🔸 Transform Phase
+1. **Clean & Format**:
+   - Replaced nulls with defaults.
+   - Cleaned special characters.
+   - Unified date formats (`YYYY-MM-DD`).
+2. **Data Type Conversion**:
+   - Converted `price`, `freight_value` to `DECIMAL`.
+   - Parsed timestamps to SQL `DATETIME`.
+3. **Remove Duplicates**:
+   - Deduplicated `order_items`, `payments`, and `reviews`.
+4. **Apply Relationships**:
+   - Joined tables like `orders` → `order_items` → `products`.
+   - Mapped `product_category_name` to English translations.
+5. **Normalization**:
+   - Split data into fact and dimension tables.
+   - Created surrogate keys for dimensions.
+   - Ensured compliance with 3NF (Third Normal Form).
+
+### 🔸 Load Phase
+1. **Design Schema in MySQL**:
+   - Created tables and constraints based on the new structure.
+   - Added indexing on foreign and frequently queried keys.
+2. **Load Final Tables**:
+   - Transferred transformed data from SSMS to MySQL.
+   - Validated referential integrity between all tables.
+3. **Final QA**:
+   - Ran test queries to validate record counts, data joins, and accuracy.
+   - Generated logs for successful loads and tracked row-level errors.
 
 ---
 
 ## 🔧 ETL Pipeline Architecture
 
-The entire project was divided into **three key stages**: Extract, Transform, and Load.
+The ETL pipeline is broken into 3 phases: **Extract**, **Transform**, and **Load**.
 
 ```mermaid
 flowchart TD
     A[CSV files from Kaggle] --> B[SSIS ETL Pipeline]
     B --> C[Staging Tables in SSMS]
-    C --> D[Data Transformation & Cleaning]
-    D --> E[Load into MySQL Final Tables]
-    E --> F[Structured DB Ready for Analytics]
+    C --> D[Data Cleaning & Transformation]
+    D --> E[Normalized Tables in MySQL]
+    E --> F[Ready for BI & Analytics]
 
-## 📊 Project Workflow
-
-### 🔍 1. Extract
-- Downloaded raw `.csv` files from Kaggle
-- Imported data into SSIS using Flat File Source
-- Loaded raw data into staging tables
-
-### 🧹 2. Transform
-- Cleaned missing/invalid values
-- Standardized column names and formats
-- Applied data type conversions and relationships
-- Performed joins to prepare dimensional modeling
-
-### 📥 3. Load
-- Loaded clean and structured data into a **MySQL** database
-- Created **normalized schema** with primary/foreign key constraints
-- Ensured optimized indexing and query readiness.
